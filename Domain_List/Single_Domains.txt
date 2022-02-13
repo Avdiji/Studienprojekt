@@ -1,10 +1,10 @@
-http://www.pc-buchenbuehl.de/
-https://posaunenchor-eibach.jimdofree.com/
-https://algebrass.de/
-https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/posaunenchor
-https://thomaskirche-nuernberg.de/gruppen-kreise/posaunenchor/
-https://heroldsberg-evangelisch.de/gruppen/kirchenmusik/posaunenchor/
-https://gustavadolfgedaechtniskirche.de/was-machen-wir/kirchenmusik
-http://www.maxfeld-evangelisch.de/kirchenmusik.html
-https://www.nikodemuskirche-nbg.de/posaunenchor/
-http://www.evang.posaunenchor.roethenbach.de/PCR/PCR-Home.html
+buchenbuehl^ http://www.pc-buchenbuehl.de/
+eibach^ https://posaunenchor-eibach.jimdofree.com/
+gebersdord^ https://algebrass.de/
+gostenhof^ https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/posaunenchor
+grosreuth^ https://thomaskirche-nuernberg.de/gruppen-kreise/posaunenchor/
+heroldsberg^ https://heroldsberg-evangelisch.de/gruppen/kirchenmusik/posaunenchor/
+kraftshof^ https://gustavadolfgedaechtniskirche.de/was-machen-wir/kirchenmusik
+maxfeld^ http://www.maxfeld-evangelisch.de/kirchenmusik.html
+nikodenmuskirche^ https://www.nikodemuskirche-nbg.de/posaunenchor/
+roethenbach^ http://www.evang.posaunenchor.roethenbach.de/PCR/PCR-Home.html
