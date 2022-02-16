@@ -1,12 +1,16 @@
 import os
 
 
+# ----------------------------------------------------------------------------------------------------
+# Class Handles everything that evolves around downloading html files
+# ----------------------------------------------------------------------------------------------------
 class WGet:
     # ----------------------------------------------------------------------------------------------------
     #                               ***** CONSTRUCTOR *****
-    # parameter:
+    # variables:
     #       url_path: path to the textfile, that contains all the urls
     #       html_path: path to the directory, where all the html files are supposed to be saved at
+    #       url_dict: dictionary with the names of the choirs(key) and the corresponding urls(value)
     #
     # Constructor creates a dictionary with the names of the choirs(key) and the corresponding urls(value)
     # ----------------------------------------------------------------------------------------------------
@@ -21,7 +25,7 @@ class WGet:
 
     # ----------------------------------------------------------------------------------------------------
     # parameter:
-    #       domains_path : path to the textfile with the website - URLs
+    #       domains_path: path to the textfile with the website - URLs
     #       saving_destination: path to the saving destination of the corresponding html-files
     #       log_path: path to the saving destination of the corresponding logfile
     #
@@ -49,4 +53,4 @@ class WGet:
 
         if os.path.isfile(f"{self.html_path}/{choir_name}.html"):
             os.remove(f"{self.html_path}/{choir_name}.html")
-            os.system(wget_createLog + f"-O {saving_destination} -nc {self.url_dict[choir_name]}/{append_url}")
+            os.system(wget_createLog + f"-O {saving_destination} -nc {self.url_dict[choir_name]}{append_url}")
