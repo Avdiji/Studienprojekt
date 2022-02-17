@@ -40,6 +40,12 @@ class Cleaning:
 
         if choir_name == "eibach":
             result = "/aktuelle-termine"
+        elif choir_name == "gebersdorf":
+            result = "/neues-termine"
+        elif choir_name == "gostenhof":
+            result = "/wann-und-wo-"
+        elif choir_name == "grosreuth":
+            result = ""
         return result
 
     # ----------------------------------------------------------------------------------------------------
