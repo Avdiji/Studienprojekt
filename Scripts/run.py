@@ -1,5 +1,6 @@
 from Helper.wget import WGet
 from Helper.cleaning import Cleaning
+from Helper.segmentation import Segmentation
 
 url_path = "../Domain_List/Chore_URLS.txt"
 html_path = "../Domain_List/Chore_HTML"
@@ -11,4 +12,6 @@ wget.download_html(log_path)
 
 clean = Cleaning(wget)
 clean.init_dict_soup()
-clean.get_cleaned_soup("eibach", log_path)
+
+segmentation = Segmentation(clean)
+segmentation.get_dates_soup("grosreuth", log_path)
