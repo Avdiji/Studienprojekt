@@ -1,0 +1,356 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="de"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>CVJM Nürnberg-Gostenhof e.V. - Wann und Wo?</title><meta content="index,follow" name="robots"><meta name="keywords" content="Posaunenchor, "><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport"><link type="image/x-icon" rel="icon" href="//www.cvjm-nuernberg-gostenhof.de/favicon.ico"><link rel="shortcut icon" href="//www.cvjm-nuernberg-gostenhof.de/favicon.ico"><link href="/cssmanager/styles_17e784cebb8.css" type="text/css" rel="stylesheet"><!--[if lt IE 9]><script src="/central/js/jquery/jquery.min.js" type="text/javascript"></script><script type="text/javascript">
+					document.createElement('figure');
+					document.createElement('figcaption');
+				</script><![endif]--><!--[if gte IE 9]><!--><script src="/central/js/jquery2/jquery.min.js" type="text/javascript"></script><!--<![endif]--><script type="text/javascript"><!--
+			
+					var $j = jQuery, $window = $j(window), parallaxList = $j(), xtraTop = 0, isNaviExternal = false, ecicsLastWidth = 0, now = new Date(), time = now.getTime(), exp = "", is_responsive = ($window.width() < 1001), show_navi = ('true' == 'false');
+					var isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
+				
+
+					$j(document).ready(function(){
+					
+						
+							EcicsMenuParams = {firstLeft:3, firstTop:-2, secTop:2, secLeft:3, responsive: is_responsive };
+						
+						
+						parallaxList = $j("div.layout-20-inner.is-photo.use-parallax");
+						if (parallaxList.length > 0) {
+							if (isMobile) parallaxList.css("backgroundAttachment", "scroll");
+							$window.on('scroll', updateParallax);
+							updateParallax();
+						}
+						
+						$j("#show-menu-link").click(function(event) {
+							event.preventDefault();
+							if ($j("body").toggleClass("menu-active").hasClass("menu-active")) {
+								
+								$j("#navi-helper").css("height", $j(document).height());
+								if (!is_responsive) {
+									$j(document).scrollTop(0);
+									document.cookie = "show_navi=true;path=/";
+									show_navi = true;
+									checkSlider();
+								}
+							} else {
+								if (!is_responsive) {
+									document.cookie = "show_navi=false;path=/";
+									show_navi = false;
+									checkSlider();
+								}
+							}
+						});
+						
+						$window.resize(debounce(myResizeFn, 500));
+						myResizeFn(); 
+						
+						$j("#navi-helper, #close-navi-box a").click(function(event) {
+							event.preventDefault();
+							$j("body").removeClass("menu-active");
+							if (!is_responsive) {
+								document.cookie = "show_navi=false;path=/";
+								show_navi = false;
+								checkSlider();
+							}
+						});
+						
+						$window.on("scroll", throttle(myScrollNavFn, 100));
+						
+						if ($j("#slick-container, .news-container.teaser").length > 0) {
+							$j.when(
+								$j.ajax({
+									dataType: "script",
+									cache: true,
+									url: "/central/js/slick_1.6.0/slick.min.js"
+								})
+							).then(function() {
+								initSlick();
+							});
+						}
+
+
+					});
+					
+					function debounce(func, wait, immediate) {
+						var timeout;
+						return function() {
+							var context = this, args = arguments;
+							var later = function() {
+								timeout = null;
+								if (!immediate) func.apply(context, args);
+							};
+							var callNow = immediate && !timeout;
+							clearTimeout(timeout);
+							timeout = setTimeout(later, wait);
+							if (callNow) func.apply(context, args);
+						};
+					};
+					
+					function throttle(fn, threshold, scope) {
+						threshold || (threshold = 250);
+						var last, deferTimer;
+						
+						return function() {
+							var context = scope || this;
+							var now = +new Date, args = arguments;
+							
+							if (last && now < last + threshold) {
+								// Hold on to it
+								clearTimeout(deferTimer);
+								deferTimer = setTimeout(function() {
+									last = now;
+									fn.apply(context, args);
+								}, threshold);
+							} else {
+								last = now;
+								fn.apply(context, args);
+							}
+						};
+					};
+					
+					function myResizeFn() {
+						var w = $window.width(),
+							h = $window.height();
+						
+						if (w < 1001 && !window.isNaviExternal) {
+							window.isNaviExternal = true;
+							if (typeof EcicsMenu !== "undefined")
+								EcicsMenu.setParam("responsive", true);
+							$j("body").removeClass("menu-active");
+							is_responsive = true;
+						} else if (w > 1000 && window.isNaviExternal) {
+							window.isNaviExternal = false;
+							if (typeof EcicsMenu !== "undefined")
+								EcicsMenu.setParam("responsive", false);
+							if (show_navi)
+								$j("body").addClass("menu-active");
+							is_responsive = false;
+						}
+						
+						var size = 0.6;
+						var minSize = 300;
+						var iw = (w > 1920) ? 1920 : Math.ceil(w/50)*50, ih = Math.max(Math.ceil((h * size)/10)*10, minSize);
+						if (window.ecicsLastWidth != iw)
+						{
+							var ns = "_" + iw + "_" + ih + ".";
+							$j("img", "#img-inner-box").each(function() {
+								var me = $j(this);
+								me.attr("src", me.data("img").replace("_1_1.", ns));
+							});
+						}
+						window.ecicsLastWidth = iw;
+						
+						
+						
+						updateParallax();
+						
+					};
+					
+					function myScrollNavFn() {
+						if ($j(this).scrollTop() > 100) {
+							$j("#main-header").addClass("fixed");
+						} else {
+							$j("#main-header").removeClass("fixed");
+						}
+					};
+					
+					
+					
+					
+					
+					function checkSlider() {
+						if (typeof $j().slick === "function") {
+							window.setTimeout(function() { 
+								$j("#slick-container").slick("slickSetOption", "dots", true, true);
+								$j(".news-container.slick-slider").slick("slickSetOption", "dots", false, true);
+							}, 400);
+						}
+					}
+					
+					function updateParallax() {
+						var pos = $window.scrollTop(),
+							windowHeight = $window.height(),
+							speedFactor = 0.1;
+						
+						parallaxList.each(function() {
+							var me = $j(this),
+								top = me.offset().top,
+								height = me.outerHeight(); 
+							
+							
+							if (top + height < pos || top > pos + windowHeight) {
+								return;
+							}
+							
+							if (isMobile) {
+								
+								var outerHeight = height; 
+								var outerWidth = me.outerWidth(false); 
+								var dynamicDifference = Math.min(Math.round( Math.max(outerHeight, outerWidth) * 0.15), 200);
+								var bgHeight = Math.max( Math.round(outerHeight + (dynamicDifference * 2)), Math.ceil(outerWidth*0.7) ); 
+								me.css('backgroundSize', "auto " + bgHeight + "px");
+								me.css('backgroundPosition', "center " + Math.round(((top - pos) * speedFactor) - dynamicDifference) + "px");
+							} else {
+								me.css('backgroundPosition', "center " + Math.round((top - pos) * speedFactor) + "px");
+							}
+						});
+					}
+			
+					function initSlick() {
+					
+						$j("#slick-container").slick({
+							prevArrow: "<span class='prev'>‹</span>", 
+							nextArrow: "<span class='next'>›</span>", 
+							fade: true,
+							speed: 2400,
+							cssEase: 'linear',
+							autoplay: true,
+							autoplaySpeed: 4000,
+							pauseOnHover: true,
+							waitForAnimate: false,
+							dots: true,
+							appendDots: $j(".dots-container"),
+							arrows: true
+						});
+					
+						$j(".news-container.teaser").slick({
+							dots: false,
+							infinite: false,
+							prevArrow: "<span class='prev'>‹</span>", 
+							nextArrow: "<span class='next'>›</span>", 
+							speed: 300,
+							slidesToShow: 4,
+							slidesToScroll: 4,
+							responsive: [
+								{
+									breakpoint: 1200,
+									settings: {
+										slidesToShow: 3,
+										slidesToScroll: 3,
+									}
+								},
+								{
+									breakpoint: 805,
+									settings: {
+										slidesToShow: 2,
+										slidesToScroll: 2
+									}
+								},
+									{
+									breakpoint: 560,
+									settings: {
+										slidesToShow: 1,
+										slidesToScroll: 1
+									}
+								}
+							]
+						});
+					}
+
+				--></script><script async="true" src="/central/menu/menu5.js" type="text/javascript"></script><script src="/central/js/klik/standard4.js" type="text/javascript"></script><style type="text/css">
+					html { height:100%; }
+				</style></head><body class="pid_2143" id="main"><script>
+					if (!is_responsive)
+						$j("body").addClass("menu-active");
+				</script><div id="page_top"></div><div id="navi-helper"></div><div id="div-main"><div id="main-header"><div class="main-inner"><div class="clearfix" id="header-inner"><div id="header-meta"><a title="Men&uuml; einblenden" id="show-menu-link" href="#show-menu"><span class="icon-menu"></span></a><a title="Website durchsuchen" id="show-search-input" href="/website/de/v/gostenhof/suche"><span class="icon-suche"></span></a></div><div id="header-logo"><a title="Zur Startseite zur&uuml;ckkehren" id="logo_link" href="/website/de/v/gostenhof"><img alt="Logo CVJM N&uuml;rnberg-Gostenhof e.V." srcset="/system/getthumb/images/__tn1__ecics_1744_2296_2000_160.png 2x, /system/getthumb/images/__tn1__ecics_1744_2296_3000_240.png 3x" src="/system/getthumb/images/__tn1__ecics_1744_2296_1000_80.png"></a></div><div id="header-navi"><a href="/website/de/v/gostenhof/aktuelles">Aktuelles</a><a href="/website/de/v/gostenhof/ueber-uns">&Uuml;ber Uns</a><a href="/website/de/v/gostenhof/gruppen">Gruppen</a><a href="/website/de/v/gostenhof/posaunenchor">Posaunenchor</a><a href="/website/de/v/gostenhof/freizeiten">Freizeiten</a><a href="/website/de/v/gostenhof/service">Kontakt</a></div></div></div></div><div id="main-img"></div><div id="main-path"><div class="main-inner"><div id="path-inner"><a href="/website/de/v/gostenhof">Startseite</a><span>&gt; </span><a href="/website/de/v/gostenhof/posaunenchor">Posaunenchor</a><span>&gt; </span>Wann und Wo?</div></div></div><div id="main-content">
+
+<div class="layout-20"><div class="layout-20-inner mt-2 mb-1     use-parallax"><div class="main-inner"><div class="area-20-1 s4"><h1 class="headline_1">Wann und Wo?</h1><div class="layout-2"><div class="area-2-1 s3"><div class="bubble_box c3"><p><strong>WANN UND WO:</strong><br /><br />Wir treffen uns immer am<strong> Donnerstagabend</strong>, um miteinander zu musizieren. Die Probe beginnt um <strong>19.30 Uhr</strong> und endet um <strong>21.00 Uhr.</strong> <br /><br />Das ganz findet in der <strong>Glockendonstr. 10 in N&uuml;rnberg-Gostenhof</strong> statt. Wir &uuml;ben immer gemeinsam im Grossen Saal des CVJM, der sich im Hinterhaus der Hausnummer 10 befindet. Hier auch ein Stadtplan, damit ihr euch besser zurechtfinden k&ouml;nnt:<br /><br /></p>
+<p><br />Ihr k&ouml;nnt uns aber auch mit der <strong>U-Bahn</strong> erreichen. Ihr m&uuml;sst dazu bis zur <strong>Haltestelle B&auml;renschanze</strong> fahren und dann einfach immer Richtung Glockendonstr. Da ist es dann die Hausnummer 10. Man braucht von der Haltestelle bis da hin ca. 3 min.<br /><br />Wir w&uuml;rden uns auf ein Kommen freuen.</p></div></div></div><div class="layout-11"><div class="area-11-1 s2"><div class="maps_box" style="overflow: visible; height: auto; padding: 0; "><div class="maps_box_inner"><div class="map_container" id="map_N1004D"></div><style>
+		button.mb-show {
+			-webkit-appearance: none;
+			cursor: pointer;
+			color: #eee;
+			display: inline-block;
+			width: 10em;
+			height: 3.0em;
+			border: 0 none;
+			border-radius: 0.75em;
+			text-align: center;
+			margin: 0;
+			background: #888;
+			background-size: 3.5em;
+			transition: background-color 0.3s;
+		}
+		button.mb-show:hover {
+			background-color: #666;
+		}
+	</style><div style="background: #eee; display: flex; flex-direction: column; position: relative; width: 100%; min-height: 100%; justify-content: center; align-items: center; padding: .6em .6em 1em; " class="click-helper"><div style="width: 300px; max-width: 30%; "><img style="width: 100%; height: auto; " alt="Karte" src="/central/images/icon_map.svg"></div><div style="max-width: 500px; "><p style="margin: .5em 0; text-align: center; ">
+				Durch das Laden der interkativen Karte von Google Maps werden Informationen an Google &uuml;bermittelt und unter Umst&auml;nden dort gespeichert.
+				Bitte beachten Sie unsere <a target="_blank" href="/datenschutz">Datenschutz&shy;erkl&auml;rung</a>.
+				 <a style="white-space: nowrap; " title="Karte auf www.google.de/maps ansehen" target="_blank" rel="noopener" href="https://www.google.de/maps?daddr=49.45141, 11.051615">Link zur Karte auf Google Maps</a>.
+				</p><p style="text-align: center; margin: .9em 0 .6em;"><button onclick="mbClickHelperShow(this, showMapN1004D); " title="Karte auf dieser Seite ansehen" class="mb-show">Karte anzeigen</button></p><p style="text-align: center; "><label><input class="sc" type="checkbox">
+					Google Maps dauerhaft aktiveren
+				</label></p></div></div></div><script type="text/javascript"><!--
+				
+					var map_N1004D
+					var marker_N1004D
+					var infowindow_N1004D
+					
+					function showMapN1004D() {
+						
+						if (typeof(google) === "undefined" || typeof(google.maps) === "undefined") {
+							$j.when( loadMapPlugin("AIzaSyDlqvfmi8vQ4NpI4_q9_8WDsAYK2BXTtMA") ).done( showMapN1004D );
+							return;
+						}
+					
+						var latlng = new google.maps.LatLng(49.45141, 11.051615);
+						var myOptions = {
+							zoom: 14,
+							center: latlng,
+							mapTypeId: google.maps.MapTypeId.ROADMAP
+						};
+						map_N1004D = new google.maps.Map($j("#map_N1004D").get(0), myOptions);
+						marker_N1004D = new google.maps.Marker({
+							map: map_N1004D,
+							position: latlng
+						});
+						
+							var iwContent = '<div class="map_infowindow"><p class="title"><b>CVJM Nürnberg-Gostenhof</b></p><p>Glockendonstraße 10<br>90429 Nürnberg</p>';
+							
+								iwContent += '<div style="margin:12px 0; background:#ccc; height:1px; line-height:0; font-size:0; "></div>';
+								var url = "https://www.google.de/maps?daddr="
+								var daddr = '';
+								
+										daddr += 'Glockendonstraße 10, 90429 Nürnberg (CVJM Nürnberg-Gostenhof)';
+									
+								url += encodeURIComponent(daddr);
+								iwContent += '<p><a href="' + url + '" title="externer Link zu Google Maps" target="_blank">Routenplaner</a></p>';
+							
+							iwContent += '</div>';
+							infowindow_N1004D = new google.maps.InfoWindow({
+								content: iwContent
+							});
+							google.maps.event.addListener(map_N1004D, 'click', function() {
+								infowindow_N1004D.close();
+							});
+							google.maps.event.addListener(marker_N1004D, 'click', function() {
+								if (infowindow_N1004D.getMap() === null)
+									infowindow_N1004D.open(map_N1004D,marker_N1004D);
+							});
+							setTimeout(function() { infowindow_N1004D.open(map_N1004D,marker_N1004D); }, 2000);
+						//	infowindow_N1004D.open(map_N1004D,marker_N1004D);	
+						
+					}
+				--></script></div></div></div><div class="layout-1 clearfix"><div class="area-1-1 s2"></div><div class="area-1-2 s1"></div></div></div></div></div></div>
+
+</div><div id="main-footer"><div class="main-inner"><div id="footer-inner"><div class="social-btns" id="bottom-btns"><a target="_blank" title="Facebook" href="https://www.facebook.com/CVJM.Gostenhof/"><span class="icon-facebook"></span></a><a target="_blank" title="E-Mail an..." href="mailto:kontakt@cvjm-nuernberg-gostenhof.de"><span class="icon-mail"></span></a><a target="_blank" title="Instagram" href="https://www.instagram.com/cvjmgoho/"><span class="icon-instagram"></span></a><a target="_blank" title="Adventskalender CVJM-N&uuml;rnberg-Gostenhof" href="<a href=%22#%22 onclick=%22popup=window.open('https://mtoools.de/kalender/23620/popup','','toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=0,resizable=0,width=600,height=500'); return false;%22>Adventskalender</a>"><span class="icon-at"></span></a></div><div class="clearfix" id="bottom-address"><div class="item ai1"><p><strong>Christlicher Verein Junger Menschen N&uuml;rnberg-Gostenhof e.V.</strong><br />Glockendonstra&szlig;e 10<br />90429 N&uuml;rnberg</p></div><div class="item ai2"><p><strong>Kontaktdaten</strong></p>
+<p>Telefon <a title="anrufen..." href="tel:+49911262032">00 49 (0) 911 262032</a><br />E-Mail <a href="mailto:kontakt@cvjm-gostenhof.de">kontakt@cvjm-nuernberg-gostenhof.de</a></p></div><div class="item ai3"><p><strong>Bankdaten</strong></p>
+<p>Evangelische Bank N&uuml;rnberg<br /><strong>BIC</strong> GENODEF1EK1<br /><strong>IBAN</strong> DE20 5206 0410 0003 5070 68</p></div><div class="item ai4"><p><a href="/website/de/v/gostenhof/service/kontakt">Kontakt</a></p>
+<p><a href="/website/de/v/gostenhof/service/impressum">Impressum</a></p>
+<p><a href="/website/de/v/gostenhof/service/datenschutz">Datenschutz</a></p><p><a title="Melden Sie sich am System an" href="/system?action=user_login">Login</a></p></div></div></div></div></div></div><div id="nav-box"><p id="close-navi-box"><a title="Men&uuml; ausblenden" href="#close-navi"><span class="icon-close"></span></a></p><div id="navi-container"><ul class="menu mid-669" id="main_ul"><li class="menu m-item1 submenu m-sub_static1" id="mli820"><a class="m-allg m1" href="/website/de/v/gostenhof/aktuelles">Aktuelles<span title="Unterpunkte anzeigen" class="has-sub icon-dreieck-rechts"></span></a><ul class="menu_sub_ul" data-is-first="1" data-level="1" id="m820"><li class="empty"></li></ul></li><li class="menu m-item1 submenu m-sub_static1" id="mli2118"><a class="m-allg m1" href="/website/de/v/gostenhof/cvjm-zuhause">CVJM ZUHAUSE<span title="Unterpunkte anzeigen" class="has-sub icon-dreieck-rechts"></span></a><ul class="menu_sub_ul" data-is-first="1" data-level="1" id="m2118"><li class="empty"></li></ul></li><li class="menu m-item1 submenu m-sub_static1" id="mli713"><a class="m-allg m1" href="/website/de/v/gostenhof/ueber-uns">Über Uns<span title="Unterpunkte anzeigen" class="has-sub icon-dreieck-rechts"></span></a><ul class="menu_sub_ul" data-is-first="1" data-level="1" id="m713"><li class="empty"></li></ul></li><li class="menu m-item1 submenu m-sub_static1" id="mli818"><a class="m-allg m1" href="/website/de/v/gostenhof/gruppen">Gruppen<span title="Unterpunkte anzeigen" class="has-sub icon-dreieck-rechts"></span></a><ul class="menu_sub_ul" data-is-first="1" data-level="1" id="m818"><li class="empty"></li></ul></li><li class="menu m-item1 m-child1" id="mli2138"><a class="m-allg m1" href="/website/de/v/gostenhof/posaunenchor">Posaunenchor</a><ul class="menu"><li class="menu m-item2" id="mli2139"><a class="m-allg m2" href="/website/de/v/gostenhof/posaunenchor/anfaengerarbeit">Anfängerarbeit</a></li><li class="menu m-item2" id="mli2141"><a class="m-allg m2" href="/website/de/v/gostenhof/posaunenchor/bilder">Bilder</a></li><li class="menu m-item2" id="mli2142"><a class="m-allg m2" href="/website/de/v/gostenhof/posaunenchor/kontakt">Kontakt</a></li><li class="menu m-item2 m-active2" id="mli2143"><a class="m-allg m2" href="/website/de/v/gostenhof/posaunenchor/wann-und-wo-">Wann und Wo?</a></li><li class="menu m-item2" id="mli2165"><a class="m-allg m2" href="/website/de/v/gostenhof/posaunenchor/musikstuecke">Musikstücke</a></li><li class="menu m-item2 m-last2" id="mli2314"><a class="m-allg m2" href="/website/de/v/gostenhof/posaunenchor/links">Links</a></li></ul></li><li class="menu m-item1 submenu m-sub_static1" id="mli819"><a class="m-allg m1" href="/website/de/v/gostenhof/freizeiten">Freizeiten<span title="Unterpunkte anzeigen" class="has-sub icon-dreieck-rechts"></span></a><ul class="menu_sub_ul" data-is-first="1" data-level="1" id="m819"><li class="empty"></li></ul></li><li class="menu m-item1 m-last1 submenu m-sub_static1" id="mli670"><a class="m-allg m1" href="/website/de/v/gostenhof/service">Kontakt<span title="Unterpunkte anzeigen" class="has-sub icon-dreieck-rechts"></span></a><ul class="menu_sub_ul" data-is-first="1" data-level="1" id="m670"><li class="empty"></li></ul></li></ul></div></div><script type="text/javascript">
+						var _paq = _paq || [];
+						_paq.push(['disableCookies']);
+						_paq.push(['trackPageView']);
+						_paq.push(['enableLinkTracking']);
+						(function() {
+							var u="/analytics/";
+							_paq.push(['setTrackerUrl', u+'matomo.php']);
+							
+								_paq.push(['setSiteId', 199]);
+								
+									_paq.push(['addTracker', u+'matomo.php', 226]);
+								
+							var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+							g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+						})();
+					</script><noscript><p><img alt="" style="border:0" src="/analytics/matomo.php?idsite=199&amp;rec=1"><img alt="" style="border:0" src="/analytics/matomo.php?idsite=226&amp;rec=1"></p></noscript></body></html>

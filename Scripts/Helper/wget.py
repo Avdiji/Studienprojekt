@@ -37,9 +37,8 @@ class WGet:
         wget_createLog = f"wget -a {self.log_path}"
 
         if os.path.isfile(self.log_path): os.remove(self.log_path)
-
         for url_key, url_value in self.url_dict.items():
-            os.system(wget_createLog + f"-O {self.html_path}/{url_key}.html -nc {url_value}")
+            os.system(wget_createLog + f" -O {self.html_path}/{url_key}.html -nc {url_value}")
 
     # ----------------------------------------------------------------------------------------------------
     # parameter:
