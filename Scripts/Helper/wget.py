@@ -5,6 +5,7 @@ import os
 # Class Handles everything that evolves around downloading html files
 # ----------------------------------------------------------------------------------------------------
 class WGet:
+
     # ----------------------------------------------------------------------------------------------------
     #                               ***** CONSTRUCTOR *****
     # variables:
@@ -14,7 +15,7 @@ class WGet:
     #
     # Constructor creates a dictionary with the names of the choirs(key) and the corresponding urls(value)
     # ----------------------------------------------------------------------------------------------------
-    def __init__(self, url_path, html_path):
+    def __init__(self, url_path, html_path, log_path):
 
         self.url_dict = dict(
             [(url.split(' ')[0], url.split(' ')[1].replace('\n', ''))
@@ -22,6 +23,7 @@ class WGet:
 
         self.url_path = url_path
         self.html_path = html_path
+        self.log_path = log_path
 
     # ----------------------------------------------------------------------------------------------------
     # parameter:
@@ -31,10 +33,10 @@ class WGet:
     #
     # Function saves several websites as a html
     # ----------------------------------------------------------------------------------------------------
-    def download_html(self, log_path):
-        wget_createLog = f"wget -a {log_path} "
+    def download_html(self):
+        wget_createLog = f"wget -a {self.log_path}"
 
-        if os.path.isfile(log_path): os.remove(log_path)
+        if os.path.isfile(self.log_path): os.remove(self.log_path)
 
         for url_key, url_value in self.url_dict.items():
             os.system(wget_createLog + f"-O {self.html_path}/{url_key}.html -nc {url_value}")
@@ -44,13 +46,12 @@ class WGet:
     #       choir_name : Name of the corresponding choir
     #       append_url: URL-Path which leads to the dates of the choir
     #       log_path: path to the saving destination of the corresponding logfile
+    #       save_path: path to the saving destination of the html
     #
     # Function deletes the previous html file and downloads the one with all the information needed.
     # ----------------------------------------------------------------------------------------------------
-    def download_html_sub(self, choir_name, append_url, log_path):
-        saving_destination = f"{self.html_path}/{choir_name}.html"
-        wget_createLog = f"wget -a {log_path} "
+    def download_html_sub(self, choir_name, append_url, save_path):
+        saving_destination = f"{save_path}/{choir_name}.html"
+        wget_createLog = f"wget -a {self.log_path} "
 
-        if os.path.isfile(f"{self.html_path}/{choir_name}.html"):
-            os.remove(f"{self.html_path}/{choir_name}.html")
-            os.system(wget_createLog + f"-O {saving_destination} -nc {self.url_dict[choir_name]}{append_url}")
+        os.system(wget_createLog + f"-O {saving_destination} -nc {self.url_dict[choir_name]}{append_url}")
