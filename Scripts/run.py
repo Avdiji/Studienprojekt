@@ -1,5 +1,5 @@
 from Helper.wget import WGet
-from Helper.cleaning import Cleaning
+from Helper.cleaning import Cleaning, get_urlAppendix_dates, get_urlAppendix_contacts
 from Helper.segmentation import Segmentation
 
 url_path = "../Domain_List/Chore_URLS.txt"
@@ -18,12 +18,12 @@ clean.init_dict_soup()
 
 segmentation = Segmentation(clean)
 
-segmentation.get_dates_soup("gostenhof")
-segmentation.get_dates_soup("eibach")
-segmentation.get_dates_soup("gebersdorf")
+#segmentation.get_dates_soup("gostenhof")
+#segmentation.get_dates_soup("eibach")
+#segmentation.get_dates_soup("gebersdorf")
 
-segmentation.get_contacts_soup("eibach")
-segmentation.get_contacts_soup("gebersdorf")
-segmentation.get_contacts_soup("gostenhof")
+#segmentation.get_contacts_soup("eibach")
+#segmentation.get_contacts_soup("gebersdorf")
+#segmentation.get_contacts_soup("gostenhof")
 
-#testCommit
+clean.get_cleaned_soup("lichtenhof", "date")
