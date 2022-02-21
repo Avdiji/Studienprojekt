@@ -27,3 +27,6 @@ dir_list = os.listdir(html_path)
 for filenames in dir_list:
     if os.path.isfile(f"{html_path}/{filenames}"):
         clean.get_cleaned_soup(filenames[:-5], "contact")
+
+
+#fix
