@@ -1,186 +1,297 @@
---2022-02-18 14:15:19--  https://posaunenchor-eibach.jimdofree.com/
-Auflösen des Hostnamens posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com) … 54.155.162.235, 52.208.73.158, 34.248.157.206, ...
-Verbindungsaufbau zu posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com)|54.155.162.235|:443... verbunden.
+--2022-02-21 22:36:44--  https://posaunenchor-eibach.jimdofree.com/
+Auflösen des Hostnamens posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com) … 52.211.111.148, 54.77.116.167, 34.248.157.206, ...
+Verbindungsaufbau zu posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com)|52.211.111.148|:443... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: nicht spezifiziert [text/html]
 Wird in »../Domain_List/Chore_HTML/eibach.html« gespeichert.
 
-     0K .......... .......... .......... ...                   10,8M=0,003s
+     0K .......... .......... .......... ...                   5,14M=0,006s
 
-2022-02-18 14:15:20 (10,8 MB/s) - »»../Domain_List/Chore_HTML/eibach.html«« gespeichert [33878]
+2022-02-21 22:36:44 (5,14 MB/s) - »»../Domain_List/Chore_HTML/eibach.html«« gespeichert [33878]
 
---2022-02-18 14:15:20--  https://algebrass.de/
+--2022-02-21 22:36:44--  https://algebrass.de/
 Auflösen des Hostnamens algebrass.de (algebrass.de) … 85.10.200.249
 Verbindungsaufbau zu algebrass.de (algebrass.de)|85.10.200.249|:443... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: nicht spezifiziert [text/html]
 Wird in »../Domain_List/Chore_HTML/gebersdorf.html« gespeichert.
 
-     0K ......                                                  140M=0s
+     0K ......                                                  210M=0s
 
-2022-02-18 14:15:20 (140 MB/s) - »»../Domain_List/Chore_HTML/gebersdorf.html«« gespeichert [6892]
+2022-02-21 22:36:44 (210 MB/s) - »»../Domain_List/Chore_HTML/gebersdorf.html«« gespeichert [6892]
 
---2022-02-18 14:15:20--  https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/posaunenchor
+--2022-02-21 22:36:44--  https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/posaunenchor
 Auflösen des Hostnamens www.cvjm-nuernberg-gostenhof.de (www.cvjm-nuernberg-gostenhof.de) … 46.4.56.54
 Verbindungsaufbau zu www.cvjm-nuernberg-gostenhof.de (www.cvjm-nuernberg-gostenhof.de)|46.4.56.54|:443... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 200
 Länge: nicht spezifiziert [text/html]
 Wird in »../Domain_List/Chore_HTML/gostenhof.html« gespeichert.
 
-     0K .......... ........                                    1,31M=0,01s
+     0K .......... ........                                    1,41M=0,01s
 
-2022-02-18 14:15:20 (1,31 MB/s) - »»../Domain_List/Chore_HTML/gostenhof.html«« gespeichert [18885]
+2022-02-21 22:36:44 (1,41 MB/s) - »»../Domain_List/Chore_HTML/gostenhof.html«« gespeichert [18885]
 
---2022-02-18 14:15:20--  https://thomaskirche-nuernberg.de/gruppen-kreise/posaunenchor
+--2022-02-21 22:36:44--  https://thomaskirche-nuernberg.de/gruppen-kreise/posaunenchor
 Auflösen des Hostnamens thomaskirche-nuernberg.de (thomaskirche-nuernberg.de) … 151.252.56.136
 Verbindungsaufbau zu thomaskirche-nuernberg.de (thomaskirche-nuernberg.de)|151.252.56.136|:443... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 301 Moved Permanently
 Platz: https://thomaskirche-nuernberg.de/gruppen-kreise/posaunenchor/ [folgend]
---2022-02-18 14:15:20--  https://thomaskirche-nuernberg.de/gruppen-kreise/posaunenchor/
+--2022-02-21 22:36:45--  https://thomaskirche-nuernberg.de/gruppen-kreise/posaunenchor/
 Wiederverwendung der bestehenden Verbindung zu thomaskirche-nuernberg.de:443.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: nicht spezifiziert [text/html]
 Wird in »../Domain_List/Chore_HTML/grosreuth.html« gespeichert.
 
-     0K .......... .......... .........                        11,1M=0,003s
+     0K .......... .......... .......... .....                 6,37M=0,005s
 
-2022-02-18 14:15:21 (11,1 MB/s) - »»../Domain_List/Chore_HTML/grosreuth.html«« gespeichert [30378]
+2022-02-21 22:36:46 (6,37 MB/s) - »»../Domain_List/Chore_HTML/grosreuth.html«« gespeichert [36343]
 
---2022-02-18 14:15:21--  https://heroldsberg-evangelisch.de/gruppen/kirchenmusik/posaunenchor
+--2022-02-21 22:36:46--  https://heroldsberg-evangelisch.de/
 Auflösen des Hostnamens heroldsberg-evangelisch.de (heroldsberg-evangelisch.de) … 185.21.102.175, 2a00:1158:1000:300::4af
 Verbindungsaufbau zu heroldsberg-evangelisch.de (heroldsberg-evangelisch.de)|185.21.102.175|:443... verbunden.
-HTTP-Anforderung gesendet, auf Antwort wird gewartet … 301 Moved Permanently
-Platz: https://heroldsberg-evangelisch.de/gruppen/kirchenmusik/posaunenchor/ [folgend]
---2022-02-18 14:15:23--  https://heroldsberg-evangelisch.de/gruppen/kirchenmusik/posaunenchor/
-Wiederverwendung der bestehenden Verbindung zu heroldsberg-evangelisch.de:443.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: nicht spezifiziert [text/html]
 Wird in »../Domain_List/Chore_HTML/heroldsberg.html« gespeichert.
 
-     0K .......... .......... .......... .......... ......      553K=0,08s
+     0K .......... .......... .......... .......... ..........  909K
+    50K ..........                                              206M=0,06s
 
-2022-02-18 14:15:26 (553 KB/s) - »»../Domain_List/Chore_HTML/heroldsberg.html«« gespeichert [47117]
+2022-02-21 22:36:48 (1,08 MB/s) - »»../Domain_List/Chore_HTML/heroldsberg.html«« gespeichert [62426]
 
---2022-02-18 14:15:26--  https://gustavadolfgedaechtniskirche.de/was-machen-wir/kirchenmusik
+--2022-02-21 22:36:48--  https://gustavadolfgedaechtniskirche.de/
 Auflösen des Hostnamens gustavadolfgedaechtniskirche.de (gustavadolfgedaechtniskirche.de) … 134.119.111.16
 Verbindungsaufbau zu gustavadolfgedaechtniskirche.de (gustavadolfgedaechtniskirche.de)|134.119.111.16|:443... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: nicht spezifiziert [text/html]
-Wird in »../Domain_List/Chore_HTML/kraftshof.html« gespeichert.
+Wird in »../Domain_List/Chore_HTML/lichtenhof.html« gespeichert.
 
-     0K .......... .......... .......... ........              1,81M=0,02s
+     0K .......... .......... .......... .......... .......... 1,36M
+    50K .......... ..                                           361M=0,04s
 
-2022-02-18 14:15:26 (1,81 MB/s) - »»../Domain_List/Chore_HTML/kraftshof.html«« gespeichert [39564]
+2022-02-21 22:36:48 (1,70 MB/s) - »»../Domain_List/Chore_HTML/lichtenhof.html«« gespeichert [64125]
 
---2022-02-18 14:15:26--  http://www.maxfeld-evangelisch.de/kirchenmusik.html
+--2022-02-21 22:36:48--  http://www.maxfeld-evangelisch.de/kirchenmusik.html
 Auflösen des Hostnamens www.maxfeld-evangelisch.de (www.maxfeld-evangelisch.de) … 5.35.226.19, 2a01:488:42:1000:50ed:8513:51:688e
 Verbindungsaufbau zu www.maxfeld-evangelisch.de (www.maxfeld-evangelisch.de)|5.35.226.19|:80... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: 28852 (28K) [text/html]
 Wird in »../Domain_List/Chore_HTML/maxfeld.html« gespeichert.
 
-     0K .......... .......... ........                        100% 1,34M=0,02s
+     0K .......... .......... ........                        100% 1,45M=0,02s
 
-2022-02-18 14:15:26 (1,34 MB/s) - »../Domain_List/Chore_HTML/maxfeld.html« gespeichert [28852/28852]
+2022-02-21 22:36:48 (1,45 MB/s) - »../Domain_List/Chore_HTML/maxfeld.html« gespeichert [28852/28852]
 
---2022-02-18 14:15:26--  https://www.nikodemuskirche-nbg.de/posaunenchor
+--2022-02-21 22:36:48--  https://www.nikodemuskirche-nbg.de/
 Auflösen des Hostnamens www.nikodemuskirche-nbg.de (www.nikodemuskirche-nbg.de) … 109.234.218.122
 Verbindungsaufbau zu www.nikodemuskirche-nbg.de (www.nikodemuskirche-nbg.de)|109.234.218.122|:443... verbunden.
-HTTP-Anforderung gesendet, auf Antwort wird gewartet … 301 Moved Permanently
-Platz: https://www.nikodemuskirche-nbg.de/posaunenchor/ [folgend]
---2022-02-18 14:15:27--  https://www.nikodemuskirche-nbg.de/posaunenchor/
-Wiederverwendung der bestehenden Verbindung zu www.nikodemuskirche-nbg.de:443.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: nicht spezifiziert [text/html]
 Wird in »../Domain_List/Chore_HTML/nikodenmuskirche.html« gespeichert.
 
-     0K .......... .......... .......... ........              2,23M=0,02s
+     0K .......... .......... .......... .......... ..........  908K
+    50K ...                                                     206M=0,06s
 
-2022-02-18 14:15:27 (2,23 MB/s) - »»../Domain_List/Chore_HTML/nikodenmuskirche.html«« gespeichert [39645]
+2022-02-21 22:36:48 (966 KB/s) - »»../Domain_List/Chore_HTML/nikodenmuskirche.html«« gespeichert [54471]
 
---2022-02-18 14:15:27--  http://www.evang.posaunenchor.roethenbach.de/PCR/PCR-Home.html
-Auflösen des Hostnamens www.evang.posaunenchor.roethenbach.de (www.evang.posaunenchor.roethenbach.de) … 62.91.41.133
-Verbindungsaufbau zu www.evang.posaunenchor.roethenbach.de (www.evang.posaunenchor.roethenbach.de)|62.91.41.133|:80... verbunden.
+--2022-02-21 22:36:48--  http://www.maxfeld-evangelisch.de/kirchenmusik.html
+Auflösen des Hostnamens www.maxfeld-evangelisch.de (www.maxfeld-evangelisch.de) … 5.35.226.19, 2a01:488:42:1000:50ed:8513:51:688e
+Verbindungsaufbau zu www.maxfeld-evangelisch.de (www.maxfeld-evangelisch.de)|5.35.226.19|:80... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
-Länge: 9772 (9,5K) [text/html]
-Wird in »../Domain_List/Chore_HTML/roethenbach.html« gespeichert.
+Länge: 28852 (28K) [text/html]
+Wird in »../Domain_List/Chore_HTML/Chore_HTML_Dates/maxfeld.html« gespeichert.
 
-     0K .........                                             100%  336M=0s
+     0K .......... .......... ........                        100% 1,41M=0,02s
 
-2022-02-18 14:15:27 (336 MB/s) - »../Domain_List/Chore_HTML/roethenbach.html« gespeichert [9772/9772]
+2022-02-21 22:36:48 (1,41 MB/s) - »../Domain_List/Chore_HTML/Chore_HTML_Dates/maxfeld.html« gespeichert [28852/28852]
 
---2022-02-18 14:15:27--  https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/posaunenchor/website/de/v/gostenhof/posaunenchor/wann-und-wo-
+--2022-02-21 22:36:48--  https://heroldsberg-evangelisch.de/
+Auflösen des Hostnamens heroldsberg-evangelisch.de (heroldsberg-evangelisch.de) … 185.21.102.175, 2a00:1158:1000:300::4af
+Verbindungsaufbau zu heroldsberg-evangelisch.de (heroldsberg-evangelisch.de)|185.21.102.175|:443... verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: nicht spezifiziert [text/html]
+Wird in »../Domain_List/Chore_HTML/Chore_HTML_Dates/heroldsberg.html« gespeichert.
+
+     0K .......... .......... .......... .......... ..........  905K
+    50K ..........                                             22,4M=0,06s
+
+2022-02-21 22:36:50 (1,07 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Dates/heroldsberg.html«« gespeichert [62426]
+
+--2022-02-21 22:36:50--  https://www.nikodemuskirche-nbg.de/
+Auflösen des Hostnamens www.nikodemuskirche-nbg.de (www.nikodemuskirche-nbg.de) … 109.234.218.122
+Verbindungsaufbau zu www.nikodemuskirche-nbg.de (www.nikodemuskirche-nbg.de)|109.234.218.122|:443... verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: nicht spezifiziert [text/html]
+Wird in »../Domain_List/Chore_HTML/Chore_HTML_Dates/nikodenmuskirche.html« gespeichert.
+
+     0K .......... .......... .......... .......... .......     729K=0,06s
+
+2022-02-21 22:36:50 (729 KB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Dates/nikodenmuskirche.html«« gespeichert [48404]
+
+--2022-02-21 22:36:50--  https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/posaunenchor/website/de/v/gostenhof/posaunenchor/wann-und-wo-
 Auflösen des Hostnamens www.cvjm-nuernberg-gostenhof.de (www.cvjm-nuernberg-gostenhof.de) … 46.4.56.54
 Verbindungsaufbau zu www.cvjm-nuernberg-gostenhof.de (www.cvjm-nuernberg-gostenhof.de)|46.4.56.54|:443... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 302 302
 Platz: /website/de/v/gostenhof/posaunenchor/wann-und-wo- [folgend]
---2022-02-18 14:15:27--  https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/posaunenchor/wann-und-wo-
+--2022-02-21 22:36:50--  https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/posaunenchor/wann-und-wo-
 Verbindungsaufbau zu www.cvjm-nuernberg-gostenhof.de (www.cvjm-nuernberg-gostenhof.de)|46.4.56.54|:443... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 200
 Länge: nicht spezifiziert [text/html]
 Wird in »../Domain_List/Chore_HTML/Chore_HTML_Dates/gostenhof.html« gespeichert.
 
-     0K .......... ..........                                  1,57M=0,01s
+     0K .......... ..........                                  1,61M=0,01s
 
-2022-02-18 14:15:27 (1,57 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Dates/gostenhof.html«« gespeichert [20831]
+2022-02-21 22:36:51 (1,61 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Dates/gostenhof.html«« gespeichert [20831]
 
---2022-02-18 14:15:27--  https://posaunenchor-eibach.jimdofree.com/aktuelle-termine/
-Auflösen des Hostnamens posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com) … 54.155.162.235, 52.208.73.158, 34.248.157.206, ...
-Verbindungsaufbau zu posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com)|54.155.162.235|:443... verbunden.
+--2022-02-21 22:36:51--  https://thomaskirche-nuernberg.de/gruppen-kreise/posaunenchor
+Auflösen des Hostnamens thomaskirche-nuernberg.de (thomaskirche-nuernberg.de) … 151.252.56.136
+Verbindungsaufbau zu thomaskirche-nuernberg.de (thomaskirche-nuernberg.de)|151.252.56.136|:443... verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 301 Moved Permanently
+Platz: https://thomaskirche-nuernberg.de/gruppen-kreise/posaunenchor/ [folgend]
+--2022-02-21 22:36:51--  https://thomaskirche-nuernberg.de/gruppen-kreise/posaunenchor/
+Wiederverwendung der bestehenden Verbindung zu thomaskirche-nuernberg.de:443.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: nicht spezifiziert [text/html]
+Wird in »../Domain_List/Chore_HTML/Chore_HTML_Dates/grosreuth.html« gespeichert.
+
+     0K .......... .......... .........                        13,3M=0,002s
+
+2022-02-21 22:36:51 (13,3 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Dates/grosreuth.html«« gespeichert [30378]
+
+--2022-02-21 22:36:51--  https://posaunenchor-eibach.jimdofree.com/aktuelle-termine/
+Auflösen des Hostnamens posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com) … 52.211.111.148, 54.77.116.167, 34.248.157.206, ...
+Verbindungsaufbau zu posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com)|52.211.111.148|:443... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: nicht spezifiziert [text/html]
 Wird in »../Domain_List/Chore_HTML/Chore_HTML_Dates/eibach.html« gespeichert.
 
-     0K .......... .......... .......... .......... .......... 1,23M
-    50K .......... .......... ..........                       13,9M=0,04s
+     0K .......... .......... .......... .......... .......... 1,17M
+    50K .......... .......... ..........                       15,6M=0,04s
 
-2022-02-18 14:15:27 (1,88 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Dates/eibach.html«« gespeichert [82580]
+2022-02-21 22:36:51 (1,80 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Dates/eibach.html«« gespeichert [82580]
 
---2022-02-18 14:15:27--  https://algebrass.de/neues-termine
+--2022-02-21 22:36:51--  https://algebrass.de/neues-termine
 Auflösen des Hostnamens algebrass.de (algebrass.de) … 85.10.200.249
 Verbindungsaufbau zu algebrass.de (algebrass.de)|85.10.200.249|:443... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: nicht spezifiziert [text/html]
 Wird in »../Domain_List/Chore_HTML/Chore_HTML_Dates/gebersdorf.html« gespeichert.
 
-     0K .......                                                 210M=0s
+     0K .......                                                 185M=0s
 
-2022-02-18 14:15:27 (210 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Dates/gebersdorf.html«« gespeichert [7896]
+2022-02-21 22:36:52 (185 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Dates/gebersdorf.html«« gespeichert [7896]
 
---2022-02-18 14:15:28--  https://posaunenchor-eibach.jimdofree.com/kontakt/
-Auflösen des Hostnamens posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com) … 54.155.162.235, 52.208.73.158, 34.248.157.206, ...
-Verbindungsaufbau zu posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com)|54.155.162.235|:443... verbunden.
+--2022-02-21 22:36:52--  https://gustavadolfgedaechtniskirche.de/was-machen-wir/kirchenmusik
+Auflösen des Hostnamens gustavadolfgedaechtniskirche.de (gustavadolfgedaechtniskirche.de) … 134.119.111.16
+Verbindungsaufbau zu gustavadolfgedaechtniskirche.de (gustavadolfgedaechtniskirche.de)|134.119.111.16|:443... verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: nicht spezifiziert [text/html]
+Wird in »../Domain_List/Chore_HTML/Chore_HTML_Dates/lichtenhof.html« gespeichert.
+
+     0K .......... .......... .......... ........              1,92M=0,02s
+
+2022-02-21 22:36:52 (1,92 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Dates/lichtenhof.html«« gespeichert [39420]
+
+--2022-02-21 22:36:52--  http://www.maxfeld-evangelisch.de/kirchenmusik.html
+Auflösen des Hostnamens www.maxfeld-evangelisch.de (www.maxfeld-evangelisch.de) … 5.35.226.19, 2a01:488:42:1000:50ed:8513:51:688e
+Verbindungsaufbau zu www.maxfeld-evangelisch.de (www.maxfeld-evangelisch.de)|5.35.226.19|:80... verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: 28852 (28K) [text/html]
+Wird in »../Domain_List/Chore_HTML/Chore_HTML_Contacts/maxfeld.html« gespeichert.
+
+     0K .......... .......... ........                        100% 1,23M=0,02s
+
+2022-02-21 22:36:52 (1,23 MB/s) - »../Domain_List/Chore_HTML/Chore_HTML_Contacts/maxfeld.html« gespeichert [28852/28852]
+
+--2022-02-21 22:36:52--  https://heroldsberg-evangelisch.de/kontakt-anfahrt
+Auflösen des Hostnamens heroldsberg-evangelisch.de (heroldsberg-evangelisch.de) … 185.21.102.175, 2a00:1158:1000:300::4af
+Verbindungsaufbau zu heroldsberg-evangelisch.de (heroldsberg-evangelisch.de)|185.21.102.175|:443... verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 301 Moved Permanently
+Platz: https://heroldsberg-evangelisch.de/kontakt-anfahrt/ [folgend]
+--2022-02-21 22:36:53--  https://heroldsberg-evangelisch.de/kontakt-anfahrt/
+Wiederverwendung der bestehenden Verbindung zu heroldsberg-evangelisch.de:443.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: nicht spezifiziert [text/html]
+Wird in »../Domain_List/Chore_HTML/Chore_HTML_Contacts/heroldsberg.html« gespeichert.
+
+     0K .......... .......... .......... .....                 1,23M=0,03s
+
+2022-02-21 22:36:54 (1,23 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Contacts/heroldsberg.html«« gespeichert [36394]
+
+--2022-02-21 22:36:54--  https://www.nikodemuskirche-nbg.de/kategorie/kontakt
+Auflösen des Hostnamens www.nikodemuskirche-nbg.de (www.nikodemuskirche-nbg.de) … 109.234.218.122
+Verbindungsaufbau zu www.nikodemuskirche-nbg.de (www.nikodemuskirche-nbg.de)|109.234.218.122|:443... verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 301 Moved Permanently
+Platz: https://www.nikodemuskirche-nbg.de/kategorie/kontakt/ [folgend]
+--2022-02-21 22:36:54--  https://www.nikodemuskirche-nbg.de/kategorie/kontakt/
+Wiederverwendung der bestehenden Verbindung zu www.nikodemuskirche-nbg.de:443.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: nicht spezifiziert [text/html]
+Wird in »../Domain_List/Chore_HTML/Chore_HTML_Contacts/nikodenmuskirche.html« gespeichert.
+
+     0K .......... .......... .......... .......... .          1,11M=0,04s
+
+2022-02-21 22:36:55 (1,11 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Contacts/nikodenmuskirche.html«« gespeichert [42835]
+
+--2022-02-21 22:36:55--  https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/posaunenchor/website/de/v/gostenhof/service
+Auflösen des Hostnamens www.cvjm-nuernberg-gostenhof.de (www.cvjm-nuernberg-gostenhof.de) … 46.4.56.54
+Verbindungsaufbau zu www.cvjm-nuernberg-gostenhof.de (www.cvjm-nuernberg-gostenhof.de)|46.4.56.54|:443... verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 302 302
+Platz: /website/de/v/gostenhof/service [folgend]
+--2022-02-21 22:36:55--  https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/service
+Verbindungsaufbau zu www.cvjm-nuernberg-gostenhof.de (www.cvjm-nuernberg-gostenhof.de)|46.4.56.54|:443... verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 200
+Länge: nicht spezifiziert [text/html]
+Wird in »../Domain_List/Chore_HTML/Chore_HTML_Contacts/gostenhof.html« gespeichert.
+
+     0K .......... .......                                     1,10M=0,02s
+
+2022-02-21 22:36:55 (1,10 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Contacts/gostenhof.html«« gespeichert [17503]
+
+--2022-02-21 22:36:55--  https://thomaskirche-nuernberg.de/gruppen-kreise/posaunenchor/kontakt/
+Auflösen des Hostnamens thomaskirche-nuernberg.de (thomaskirche-nuernberg.de) … 151.252.56.136
+Verbindungsaufbau zu thomaskirche-nuernberg.de (thomaskirche-nuernberg.de)|151.252.56.136|:443... verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 301 Moved Permanently
+Platz: https://thomaskirche-nuernberg.de/kontakt/ [folgend]
+--2022-02-21 22:36:55--  https://thomaskirche-nuernberg.de/kontakt/
+Wiederverwendung der bestehenden Verbindung zu thomaskirche-nuernberg.de:443.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
+Länge: nicht spezifiziert [text/html]
+Wird in »../Domain_List/Chore_HTML/Chore_HTML_Contacts/grosreuth.html« gespeichert.
+
+     0K .......... .........                                    305M=0s
+
+2022-02-21 22:36:55 (305 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Contacts/grosreuth.html«« gespeichert [19866]
+
+--2022-02-21 22:36:55--  https://posaunenchor-eibach.jimdofree.com/kontakt/
+Auflösen des Hostnamens posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com) … 52.211.111.148, 52.208.73.158, 34.248.157.206, ...
+Verbindungsaufbau zu posaunenchor-eibach.jimdofree.com (posaunenchor-eibach.jimdofree.com)|52.211.111.148|:443... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: nicht spezifiziert [text/html]
 Wird in »../Domain_List/Chore_HTML/Chore_HTML_Contacts/eibach.html« gespeichert.
 
-     0K .......... .......... .......... ..                    9,14M=0,003s
+     0K .......... .......... .......... ..                    8,33M=0,004s
 
-2022-02-18 14:15:28 (9,14 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Contacts/eibach.html«« gespeichert [32843]
+2022-02-21 22:36:55 (8,33 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Contacts/eibach.html«« gespeichert [32843]
 
---2022-02-18 14:15:28--  https://algebrass.de/kontakt
+--2022-02-21 22:36:56--  https://algebrass.de/kontakt
 Auflösen des Hostnamens algebrass.de (algebrass.de) … 85.10.200.249
 Verbindungsaufbau zu algebrass.de (algebrass.de)|85.10.200.249|:443... verbunden.
 HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: nicht spezifiziert [text/html]
 Wird in »../Domain_List/Chore_HTML/Chore_HTML_Contacts/gebersdorf.html« gespeichert.
 
-     0K .....                                                   183M=0s
+     0K .....                                                   171M=0s
 
-2022-02-18 14:15:28 (183 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Contacts/gebersdorf.html«« gespeichert [5694]
+2022-02-21 22:36:56 (171 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Contacts/gebersdorf.html«« gespeichert [5694]
 
---2022-02-18 14:15:28--  https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/posaunenchor/website/de/v/gostenhof/service
-Auflösen des Hostnamens www.cvjm-nuernberg-gostenhof.de (www.cvjm-nuernberg-gostenhof.de) … 46.4.56.54
-Verbindungsaufbau zu www.cvjm-nuernberg-gostenhof.de (www.cvjm-nuernberg-gostenhof.de)|46.4.56.54|:443... verbunden.
-HTTP-Anforderung gesendet, auf Antwort wird gewartet … 302 302
-Platz: /website/de/v/gostenhof/service [folgend]
---2022-02-18 14:15:28--  https://www.cvjm-nuernberg-gostenhof.de/website/de/v/gostenhof/service
-Verbindungsaufbau zu www.cvjm-nuernberg-gostenhof.de (www.cvjm-nuernberg-gostenhof.de)|46.4.56.54|:443... verbunden.
-HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 200
+--2022-02-21 22:36:56--  https://gustavadolfgedaechtniskirche.de/was-machen-wir/kirchenmusik
+Auflösen des Hostnamens gustavadolfgedaechtniskirche.de (gustavadolfgedaechtniskirche.de) … 134.119.111.16
+Verbindungsaufbau zu gustavadolfgedaechtniskirche.de (gustavadolfgedaechtniskirche.de)|134.119.111.16|:443... verbunden.
+HTTP-Anforderung gesendet, auf Antwort wird gewartet … 200 OK
 Länge: nicht spezifiziert [text/html]
-Wird in »../Domain_List/Chore_HTML/Chore_HTML_Contacts/gostenhof.html« gespeichert.
+Wird in »../Domain_List/Chore_HTML/Chore_HTML_Contacts/lichtenhof.html« gespeichert.
 
-     0K .......... .......                                     1,26M=0,01s
+     0K .......... .......... .......... ........              1,95M=0,02s
 
-2022-02-18 14:15:28 (1,26 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Contacts/gostenhof.html«« gespeichert [17503]
+2022-02-21 22:36:56 (1,95 MB/s) - »»../Domain_List/Chore_HTML/Chore_HTML_Contacts/lichtenhof.html«« gespeichert [39420]
 
