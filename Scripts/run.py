@@ -18,7 +18,7 @@ clean.init_dict_soup()
 
 segmentation = Segmentation(clean)
 
-print(segmentation.get_dates_soup("heroldsberg"))
+
 
 
 #fix

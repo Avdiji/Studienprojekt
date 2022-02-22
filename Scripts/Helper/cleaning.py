@@ -54,9 +54,12 @@ def get_urlAppendix_contacts(choir_name, dict_soup):
         result = [val for val in result if "Kontakt" in str(val)][0]
         result = str(result).split("\"")[1]
 
-    elif choir_name == "gostenhof" or choir_name == "grosreuth":
+    elif choir_name == "gostenhof":
         result = [val for val in result if "Kontakt" in str(val)][0]
         result = str(result).split("\"")[1]
+
+    elif choir_name == "grosreuth":
+        result = ""
 
     elif choir_name == "heroldsberg":
         result = [val for val in result if "Kontakt" in str(val)][0]

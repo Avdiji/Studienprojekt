@@ -41,7 +41,7 @@ class Segmentation:
             result = result.find_all("p")[20]
 
         elif choir_name == "maxfeld":
-            result = result.find_all(class_="Textkörper P-1")
+            result = str(result.find_all(class_="Textkörper P-1"))
 
         elif choir_name == "nikodenmuskirche":
             result = result.find_all("p")[69]
@@ -63,4 +63,19 @@ class Segmentation:
         elif choir_name == "gostenhof":
             result = result.find_all("p")[2]
 
-        return result.getText()
+        elif choir_name == "grosreuth":
+            result = result.find_all("p")[4]
+
+        elif choir_name == "heroldsberg":
+            result = result.find_all("p")[1]
+
+        elif choir_name == "lichtenhof":
+            result = result.find_all("p")[21]
+
+        elif choir_name == "maxfeld":
+            result = str(result.find_all(class_="Normal P-1"))
+
+        elif choir_name == "nikodenmuskirche":
+            result = result.find_all("p")[69]
+
+        return result if isinstance(result, str) else result.getText()
