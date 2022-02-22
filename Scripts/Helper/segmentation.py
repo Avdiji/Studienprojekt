@@ -1,3 +1,5 @@
+from bs4 import BeautifulSoup
+
 # ----------------------------------------------------------------------------------------------------
 # Class is used to segment the cleaned HTML - Files into different
 # categories (date, contact, location...)
@@ -28,7 +30,23 @@ class Segmentation:
         elif choir_name == "gebersdorf" or choir_name == "gostenhof":
             result = result.find_all("p")[0]
 
-        return result.getText()
+        elif choir_name == "grosreuth":
+            result = result.find_all(class_="et_tag")
+            result = "".join(str(e) for e in result)
+
+        elif choir_name == "heroldsberg":
+            result = result.find_all("p")[3] #date cleaning in heroldsberg
+
+        elif choir_name == "lichtenhof":
+            result = result.find_all("p")[20]
+
+        elif choir_name == "maxfeld":
+            result = result.find_all(class_="Textkörper P-1")
+
+        elif choir_name == "nikodenmuskirche":
+            result = result.find_all("p")[69]
+
+        return result if isinstance(result, str) else result.getText()
 
     # ----------------------------------------------------------------------------------------------------
     # parameters:

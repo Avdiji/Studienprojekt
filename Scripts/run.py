@@ -18,15 +18,7 @@ clean.init_dict_soup()
 
 segmentation = Segmentation(clean)
 
-dir_list = os.listdir(html_path)
-for filenames in dir_list:
-    if os.path.isfile(f"{html_path}/{filenames}"):
-        clean.get_cleaned_soup(filenames[:-5], "date")
-
-dir_list = os.listdir(html_path)
-for filenames in dir_list:
-    if os.path.isfile(f"{html_path}/{filenames}"):
-        clean.get_cleaned_soup(filenames[:-5], "contact")
+print(segmentation.get_dates_soup("heroldsberg"))
 
 
 #fix
