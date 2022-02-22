@@ -3,7 +3,6 @@
 # categories (date, contact, location...)
 # ----------------------------------------------------------------------------------------------------
 class Segmentation:
-
     # ----------------------------------------------------------------------------------------------------
     #                               ***** CONSTRUCTOR *****
     # variables:
@@ -23,12 +22,27 @@ class Segmentation:
         result = self.clean.get_cleaned_soup(choir_name, "date")
 
         if choir_name == "eibach":
-            result = result.find("table")
+            result = result.find("footer")
+            result = result.find_all("p")[0]
 
         elif choir_name == "gebersdorf" or choir_name == "gostenhof":
             result = result.find_all("p")[0]
 
-        return result.getText()
+        elif choir_name == "grosreuth":
+            result = result.find_all(class_="et_tag")
+            result = "".join(e.getText() for e in result)
+
+        elif choir_name == "heroldsberg":
+            result = result.find_all("p")[0]
+
+        elif choir_name == "lichtenhof":
+            result = result.find_all("p")[20]
+
+        elif choir_name == "maxfeld":
+            result = result.find_all(class_="Textkörper P-1")
+            result = "".join(e.getText() for e in result)
+
+        return result if isinstance(result, str) else result.getText()
 
     # ----------------------------------------------------------------------------------------------------
     # parameters:
@@ -43,6 +57,20 @@ class Segmentation:
             result = result.find_all("p")[0]
 
         elif choir_name == "gostenhof":
-            result = result.find_all("p")[2]
+            result = result.find(class_="bubble_box c3")
+            result.find_all("p")
 
-        return result.getText()
+        elif choir_name == "grosreuth":
+            result = result.find_all("p")[4]
+
+        elif choir_name == "heroldsberg":
+            result = result.find_all("p")[1]
+
+        elif choir_name == "lichtenhof":
+            result = result.find_all("p")[21]
+
+        elif choir_name == "maxfeld":
+            result = result.find_all(class_="Normal P-1")
+            result = "".join(e.getText() for e in result)
+
+        return result if isinstance(result, str) else result.getText()
