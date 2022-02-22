@@ -18,7 +18,9 @@ clean.init_dict_soup()
 
 segmentation = Segmentation(clean)
 
-
-
-
-#fix
+with open(url_path, "r") as f:
+    for line in f:
+        print(line.split(" ")[0])
+        print(
+            f"\t{segmentation.get_dates_soup(line.split(' ')[0])}\n\t{segmentation.get_contacts_soup(line.split(' ')[0])}\n"
+        )

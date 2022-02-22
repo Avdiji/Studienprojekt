@@ -12,8 +12,7 @@ def get_urlAppendix_dates(choir_name, dict_soup):
     result = dict_soup[choir_name + ".html"].find_all('a')
 
     if choir_name == "eibach":
-        result = [val for val in result if "aktuelle Termine" in str(val)][0]
-        result = str(result).split("\"")[3]
+        result = ""
 
     elif choir_name == "gebersdorf":
         result = [val for val in result if "Termine" in str(val)]
@@ -26,7 +25,7 @@ def get_urlAppendix_dates(choir_name, dict_soup):
     elif choir_name == "grosreuth" or \
             choir_name == "heroldsberg" or \
             choir_name == "maxfeld" or \
-            choir_name == "nikodenmuskirche":
+            choir_name == "eibach":
         result = ""
 
     elif choir_name == "lichtenhof":
@@ -55,29 +54,16 @@ def get_urlAppendix_contacts(choir_name, dict_soup):
         result = str(result).split("\"")[1]
 
     elif choir_name == "gostenhof":
-        result = [val for val in result if "Kontakt" in str(val)][0]
+        result = [val for val in result if "Kontakt" in str(val)][1]
         result = str(result).split("\"")[1]
-
-    elif choir_name == "grosreuth":
-        result = ""
-
-    elif choir_name == "heroldsberg":
-        result = [val for val in result if "Kontakt" in str(val)][0]
-        result = str(result).split("\"")[1]
-        result = "/" + result.split("/")[3]
 
     elif choir_name == "lichtenhof":
         result = [val for val in result if "Kirchenmusik" in str(val)]
         result = result[0]
         result = str(result).split("\"")[5]
 
-    elif choir_name == "maxfeld":
+    elif choir_name == "maxfeld" or choir_name == "grosreuth" or choir_name == "heroldsberg":
         result = ""
-
-    elif choir_name == "nikodenmuskirche":
-        result = [val for val in result if "Kontakt" in str(val)][0]
-        result = str(result).split("\"")[1]
-        result = "/" + result.split("/")[3] + "/" + result.split("/")[4]
 
     return result
 
