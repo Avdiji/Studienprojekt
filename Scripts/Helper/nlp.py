@@ -2,6 +2,8 @@ import spacy
 from spacy.matcher import Matcher
 
 
+# TODO write a shitton of patterns, corresponding to the html files
+
 def get_matches_list(matcher, doc):
     result = []
     for match_id, start, end in matcher(doc):
@@ -37,4 +39,3 @@ class NLP:
         matcher.add(f"{choir_name}_tel", [pattern])
 
         return get_matches_list(matcher, doc)
-

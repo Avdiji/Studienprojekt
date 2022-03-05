@@ -1,5 +1,5 @@
 import os
-
+#TODO use proper wget command, write logfile parser (choir, save path, filename), use pandas to save parserreturns in csv, delete the bullshit
 
 # ----------------------------------------------------------------------------------------------------
 # Class Handles everything that evolves around downloading html files
