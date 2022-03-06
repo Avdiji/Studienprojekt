@@ -1,8 +1,7 @@
 import os
 import re
+import pandas
 
-
-# TODO write logfile parser (choir, save path, filename), use pandas to save parser-returns in csv
 
 # ----------------------------------------------------------------------------------------------------
 # Class Handles everything that evolves around downloading html files
@@ -18,7 +17,7 @@ class WGet:
     #
     # Constructor creates a dictionary with the names of the choirs(key) and the corresponding urls(value)
     # ----------------------------------------------------------------------------------------------------
-    def __init__(self, url_path, html_path, log_path):
+    def __init__(self, url_path, html_path, log_path, dataframes_path):
 
         self.url_dict = dict(
             [(url.split(' ')[0], url.split(' ')[1].replace('\n', ''))
@@ -27,6 +26,7 @@ class WGet:
         self.url_path = url_path
         self.html_path = html_path
         self.log_path = log_path
+        self.dataframes_path = dataframes_path + "wget_dataframe.csv"
 
     # ----------------------------------------------------------------------------------------------------
     # parameter:
@@ -51,19 +51,33 @@ class WGet:
 
     # ----------------------------------------------------------------------------------------------------
     # Method acts as a parser for the log_file. It saves the corresponding choir-name, path and name of
-    # all html files, found in the logfile (as a triple) in a list
+    # all html files, found in the logfile (as a dict)
     #
-    # Return a list of triples, that each contain the information described above
+    # Return a dict, that each contain the information described above
     # ----------------------------------------------------------------------------------------------------
-    def get_log_triple(self):
-        result = []
-        a = self.log_path
-        tmp = "Wird in »../Domains/Domain_Mirror/eibach/posaunenchor-eibach.jimdofree.com/index.html".split("/")
+    def get_log_dict(self):
+        result = {"Choirname": [],
+                  "Path": [],
+                  "Filename": []}
 
-        val1 = tmp[3]
-        val3 = tmp[len(tmp) - 1]
-        val2 = "".join(i + "/" for i in tmp[1:-1])
+        regex = 'Wird in ([^ ]*)(.html[^ ]*)'
 
-        result.append((val1, val2, val3))
-        print(result)
+        file = open(self.log_path, "r", encoding="UTF-8")
+        lines = "".join([str(i) for i in file.readlines()])
+        tmp = re.findall(regex, lines)
+
+        for elem in tmp:
+            val_all = (elem[0] + elem[1][:-1]).split('/')
+
+            result["Choirname"].append(val_all[3])
+            result["Path"].append("../" + "".join(i + "/" for i in val_all[1:-1]))
+            result["Filename"].append(val_all[len(val_all) - 1])
+
         return result
+
+    # ----------------------------------------------------------------------------------------------------
+    # Method creates and saves a dataframe with all the needed information for cleaning and segmentation
+    # ----------------------------------------------------------------------------------------------------
+    def create_csv(self):
+        dataframe = pandas.DataFrame(self.get_log_dict(), columns=["Choirname", "Path", "Filename"])
+        dataframe.to_csv(self.dataframes_path)
