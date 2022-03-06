@@ -1,5 +1,8 @@
 import os
-#TODO use proper wget command, write logfile parser (choir, save path, filename), use pandas to save parserreturns in csv, delete the bullshit
+import re
+
+
+# TODO write logfile parser (choir, save path, filename), use pandas to save parser-returns in csv
 
 # ----------------------------------------------------------------------------------------------------
 # Class Handles everything that evolves around downloading html files
@@ -7,7 +10,7 @@ import os
 class WGet:
 
     # ----------------------------------------------------------------------------------------------------
-    #                               ***** CONSTRUCTOR *****
+    #                                CONSTRUCTOR
     # variables:
     #       url_path: path to the textfile, that contains all the urls
     #       html_path: path to the directory, where all the html files are supposed to be saved at
@@ -33,24 +36,34 @@ class WGet:
     #
     # Function saves several websites as a html
     # ----------------------------------------------------------------------------------------------------
-    def download_html(self):
-        wget_createLog = f"wget -a {self.log_path}"
+    def mirror_domain(self):
+
+        wget_createLog = f"wget -a {self.log_path} "
+        wget_reject_datatypes = f"--reject JPG,jpg,png,mp3,pdf,MP4,mp4 "
 
         if os.path.isfile(self.log_path): os.remove(self.log_path)
+
         for url_key, url_value in self.url_dict.items():
-            os.system(wget_createLog + f" -O {self.html_path}/{url_key}.html -nc {url_value}")
+            wget_save_in_path = f"-P {self.html_path}/{url_key} "
+            wget_mirror = f"-N -c --mirror {url_value}"
+
+            os.system(wget_createLog + wget_save_in_path + wget_reject_datatypes + wget_mirror)
 
     # ----------------------------------------------------------------------------------------------------
-    # parameter:
-    #       choir_name : Name of the corresponding choir
-    #       append_url: URL-Path which leads to the dates of the choir
-    #       log_path: path to the saving destination of the corresponding logfile
-    #       save_path: path to the saving destination of the html
+    # Method acts as a parser for the log_file. It saves the corresponding choir-name, path and name of
+    # all html files, found in the logfile (as a triple) in a list
     #
-    # Function deletes the previous html file and downloads the one with all the information needed.
+    # Return a list of triples, that each contain the information described above
     # ----------------------------------------------------------------------------------------------------
-    def download_html_sub(self, choir_name, append_url, save_path):
-        saving_destination = f"{save_path}/{choir_name}.html"
-        wget_createLog = f"wget -a {self.log_path} "
+    def get_log_triple(self):
+        result = []
+        a = self.log_path
+        tmp = "Wird in »../Domains/Domain_Mirror/eibach/posaunenchor-eibach.jimdofree.com/index.html".split("/")
 
-        os.system(wget_createLog + f"-O {saving_destination} -nc {self.url_dict[choir_name]}{append_url}")
+        val1 = tmp[3]
+        val3 = tmp[len(tmp) - 1]
+        val2 = "".join(i + "/" for i in tmp[1:-1])
+
+        result.append((val1, val2, val3))
+        print(result)
+        return result
