@@ -1,5 +1,7 @@
 import os
-#TODO use proper wget command, write logfile parser (choir, save path, filename), use pandas to save parserreturns in csv, delete the bullshit
+import re
+import pandas
+
 
 # ----------------------------------------------------------------------------------------------------
 # Class Handles everything that evolves around downloading html files
@@ -7,7 +9,7 @@ import os
 class WGet:
 
     # ----------------------------------------------------------------------------------------------------
-    #                               ***** CONSTRUCTOR *****
+    #                                CONSTRUCTOR
     # variables:
     #       url_path: path to the textfile, that contains all the urls
     #       html_path: path to the directory, where all the html files are supposed to be saved at
@@ -15,7 +17,7 @@ class WGet:
     #
     # Constructor creates a dictionary with the names of the choirs(key) and the corresponding urls(value)
     # ----------------------------------------------------------------------------------------------------
-    def __init__(self, url_path, html_path, log_path):
+    def __init__(self, url_path, html_path, log_path, dataframes_path):
 
         self.url_dict = dict(
             [(url.split(' ')[0], url.split(' ')[1].replace('\n', ''))
@@ -24,6 +26,7 @@ class WGet:
         self.url_path = url_path
         self.html_path = html_path
         self.log_path = log_path
+        self.dataframes_path = dataframes_path + "wget_dataframe.csv"
 
     # ----------------------------------------------------------------------------------------------------
     # parameter:
@@ -33,24 +36,48 @@ class WGet:
     #
     # Function saves several websites as a html
     # ----------------------------------------------------------------------------------------------------
-    def download_html(self):
-        wget_createLog = f"wget -a {self.log_path}"
+    def mirror_domain(self):
+
+        wget_createLog = f"wget -a {self.log_path} "
+        wget_reject_datatypes = f"--reject JPG,jpg,png,mp3,pdf,MP4,mp4 "
 
         if os.path.isfile(self.log_path): os.remove(self.log_path)
+
         for url_key, url_value in self.url_dict.items():
-            os.system(wget_createLog + f" -O {self.html_path}/{url_key}.html -nc {url_value}")
+            wget_save_in_path = f"-P {self.html_path}/{url_key} "
+            wget_mirror = f"-N -c --mirror {url_value}"
+
+            os.system(wget_createLog + wget_save_in_path + wget_reject_datatypes + wget_mirror)
 
     # ----------------------------------------------------------------------------------------------------
-    # parameter:
-    #       choir_name : Name of the corresponding choir
-    #       append_url: URL-Path which leads to the dates of the choir
-    #       log_path: path to the saving destination of the corresponding logfile
-    #       save_path: path to the saving destination of the html
+    # Method acts as a parser for the log_file. It saves the corresponding choir-name, path and name of
+    # all html files, found in the logfile (as a dict)
     #
-    # Function deletes the previous html file and downloads the one with all the information needed.
+    # Return a dict, that each contain the information described above
     # ----------------------------------------------------------------------------------------------------
-    def download_html_sub(self, choir_name, append_url, save_path):
-        saving_destination = f"{save_path}/{choir_name}.html"
-        wget_createLog = f"wget -a {self.log_path} "
+    def get_log_dict(self):
+        result = {"Choirname": [],
+                  "Path": [],
+                  "Filename": []}
 
-        os.system(wget_createLog + f"-O {saving_destination} -nc {self.url_dict[choir_name]}{append_url}")
+        regex = 'Wird in ([^ ]*)(.html[^ ]*)'
+
+        file = open(self.log_path, "r", encoding="UTF-8")
+        lines = "".join([str(i) for i in file.readlines()])
+        tmp = re.findall(regex, lines)
+
+        for elem in tmp:
+            val_all = (elem[0] + elem[1][:-1]).split('/')
+
+            result["Choirname"].append(val_all[3])
+            result["Path"].append("../" + "".join(i + "/" for i in val_all[1:-1]))
+            result["Filename"].append(val_all[len(val_all) - 1])
+
+        return result
+
+    # ----------------------------------------------------------------------------------------------------
+    # Method creates and saves a dataframe with all the needed information for cleaning and segmentation
+    # ----------------------------------------------------------------------------------------------------
+    def create_csv(self):
+        dataframe = pandas.DataFrame(self.get_log_dict(), columns=["Choirname", "Path", "Filename"])
+        dataframe.to_csv(self.dataframes_path)
