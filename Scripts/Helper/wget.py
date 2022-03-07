@@ -1,6 +1,12 @@
 import os
 import re
 import pandas
+from datetime import datetime
+
+
+def get_time():
+    timer = datetime.now()
+    return timer.strftime("%d/%m/%Y %H:%M:%S")
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -56,9 +62,11 @@ class WGet:
     # Return a dict, that each contain the information described above
     # ----------------------------------------------------------------------------------------------------
     def get_log_dict(self):
+
         result = {"Choirname": [],
                   "Path": [],
-                  "Filename": []}
+                  "Filename": [],
+                  "Last Update": []}
 
         regex = 'Wird in ([^ ]*)(.html[^ ]*)'
 
@@ -72,6 +80,7 @@ class WGet:
             result["Choirname"].append(val_all[3])
             result["Path"].append("../" + "".join(i + "/" for i in val_all[1:-1]))
             result["Filename"].append(val_all[len(val_all) - 1])
+            result["Last Update"].append(get_time())
 
         return result
 
@@ -79,5 +88,9 @@ class WGet:
     # Method creates and saves a dataframe with all the needed information for cleaning and segmentation
     # ----------------------------------------------------------------------------------------------------
     def create_csv(self):
-        dataframe = pandas.DataFrame(self.get_log_dict(), columns=["Choirname", "Path", "Filename"])
-        dataframe.to_csv(self.dataframes_path)
+        new_dataframe = pandas.DataFrame(self.get_log_dict(), columns=["Choirname", "Path", "Filename", "Last Update"])
+        existing_dataframe = pandas.read_csv(self.dataframes_path)
+
+        merged_dataframe = pandas.concat([new_dataframe, existing_dataframe])
+        merged_dataframe.drop_duplicates(subset=["Choirname", "Path", "Filename"], inplace=True)
+        merged_dataframe.to_csv(self.dataframes_path, index=False)

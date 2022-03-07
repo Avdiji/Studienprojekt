@@ -7,5 +7,5 @@ dataframes_path = "../Dataframes/"
 
 wget = WGet(url_path, html_path, log_path, dataframes_path)
 
-# wget.mirror_domain()
+wget.mirror_domain()
 wget.create_csv()
