@@ -1,3 +1,4 @@
+from datetime import datetime
 # TODO save text of each paragraph in a csv using pandas
 
 
@@ -7,4 +8,7 @@
 # ----------------------------------------------------------------------------------------------------
 class Segmentation:
 
-# abc
+    @staticmethod
+    def get_time():
+        time = datetime.now()
+        return print(time.strftime("%d/%m/%Y %H:%M:%S"))
