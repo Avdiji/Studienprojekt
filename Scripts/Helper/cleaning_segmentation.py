@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import pandas
 
+
 # ----------------------------------------------------------------------------------------------------
 # parameter:
 #     wget_csv_row: path to a single row from the csv dataframe from Wget
@@ -59,17 +60,15 @@ class CleaningSegmentation:
         self.wget_dataframe_path = wget_dataframe_path
 
     def filter_updated_dataframe(self):
-        wget_dataframe = pandas.read_csv(self.wget_dataframe_path)
-        seg_dataframe = pandas.read_csv(self.dataframe_path)
+        wget_dataframe = pandas.read_csv(self.wget_dataframe_path)  # Choir-Name, Path, Filename, Last Update
+        seg_dataframe = pandas.read_csv(self.dataframe_path)  # Choir-Name, Path, Filename,<p>, Last Update
 
-        df_concat = pandas.concat([wget_dataframe, seg_dataframe],join="inner").drop_duplicates(keep=False)
+        concatenated = pandas.merge(seg_dataframe, wget_dataframe, on=['Choir-Name', 'Path', 'Filename', 'Last Update'],
+                                    how='right', indicator=True)
 
-        seg_dataframe = pandas.concat([seg_dataframe,df_concat])
-        seg_dataframe = pandas.concat([seg_dataframe, df_concat, df_concat]).drop_duplicates(subset=["Choir-Name", "Path", "Filename"],keep=False)
-        seg_dataframe.to_csv(self.dataframe_path, index=0)
+        concatenated.query('_merge=="both"').drop('_merge', axis=1).to_csv(index=False)
 
-        return df_concat
-
+        return concatenated.query('_merge=="right_only"').drop(['_merge','<p>'], axis=1)
 
     def execute_segmentation(self):
         df_update = self.filter_updated_dataframe()
