@@ -1,6 +1,8 @@
 from time import time
+
 from Helper.wget import WGet
-from Helper.cleaning_segmentation import CleaningSegmentation, clean_html, segment_html
+from Helper.cleaning_segmentation import CleaningSegmentation
+from Helper.nlp_filter import NLP_Filter
 
 
 def performance(func):
@@ -18,14 +20,23 @@ url_path = "../Domains/Chore_URLS.txt"
 html_path = "../Domains/Domain_Mirror"
 log_path = "../Domains/logfile.log"
 
-wget_dataframes_path = "../Dataframes/wget_dataframe.csv"
-segmentation_dataframes_path = "../Dataframes/segmentation_dataframe.csv"
+wget_dataframe_path = "../Dataframes/wget_dataframe.csv"
+segmentation_dataframe_path = "../Dataframes/segmentation_dataframe.csv"
+nlp_dataframe_path = "../Dataframes/nlp_dataframe.csv"
+pattern_dataframe_path = "../Dataframes/patterns.csv"
 
-wget = WGet(url_path, html_path, log_path, wget_dataframes_path)
+wget = WGet(url_path, html_path, log_path, wget_dataframe_path)
 
 wget.mirror_domain()
 wget.wget_create_csv()
 
-cl_seg = CleaningSegmentation(segmentation_dataframes_path, wget_dataframes_path)
+cl_seg = CleaningSegmentation(segmentation_dataframe_path, wget_dataframe_path)
 
 cl_seg.execute_segmentation()
+
+
+nlp = NLP_Filter(nlp_dataframe_path, pattern_dataframe_path, segmentation_dataframe_path)
+
+nlp.create_csv()
+
+#TODO implement hashcode in tables to improve performance and reduce complexity

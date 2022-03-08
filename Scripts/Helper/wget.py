@@ -4,6 +4,9 @@ import pandas
 from datetime import datetime
 
 
+# ----------------------------------------------------------------------------------------------------
+# Function returns current date and time
+# ----------------------------------------------------------------------------------------------------
 def get_time():
     timer = datetime.now()
     return timer.strftime("%d/%m/%Y %H:%M:%S")
@@ -45,7 +48,7 @@ class WGet:
     def mirror_domain(self):
 
         wget_createLog = f"wget -a {self.log_path} "
-        wget_reject_datatypes = f"--reject JPG,jpg,png,mp3,pdf,MP4,mp4 "
+        wget_reject_datatypes = f"--reject JPG,jpg,png,mp3,pdf,MP4,mp4,jpeg,gif,js,css "
 
         if os.path.isfile(self.log_path): os.remove(self.log_path)
 
@@ -82,6 +85,7 @@ class WGet:
             result["Filename"].append(val_all[len(val_all) - 1])
             result["Last Update"].append(get_time())
 
+        file.close()
         return result
 
     # ----------------------------------------------------------------------------------------------------
