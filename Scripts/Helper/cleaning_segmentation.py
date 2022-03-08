@@ -53,12 +53,28 @@ def segment_html(wget_csv_row, hlp_beautifulSoup):
     return result
 
 
+# ----------------------------------------------------------------------------------------------------
+# Class is responsible for cleaning all html-files, segmenting them and save the segments in a
+# designated csv file
+# ----------------------------------------------------------------------------------------------------
 class CleaningSegmentation:
 
+    # ----------------------------------------------------------------------------------------------------
+    #                                CONSTRUCTOR
+    # variables:
+    #       dataframe_path: path to the dataframe the segments are supposed to be saved in
+    #       wget_dataframe_path: path to the dataframe the html - path's are being saved in
+    # ----------------------------------------------------------------------------------------------------
     def __init__(self, dataframe_path, wget_dataframe_path):
         self.dataframe_path = dataframe_path
         self.wget_dataframe_path = wget_dataframe_path
 
+    # ----------------------------------------------------------------------------------------------------
+    # Function rewrites segmentation_dataframe.csv so that only entries that are up-to-date are saved
+    #
+    # Returns a dataframe containing the wget_dataframe entries that need to be updated
+    # in segmentation_dataframe
+    # ----------------------------------------------------------------------------------------------------
     def filter_updated_dataframe(self):
         wget_dataframe = pandas.read_csv(self.wget_dataframe_path)  # Choir-Name, Path, Filename, Last Update
         seg_dataframe = pandas.read_csv(self.dataframe_path)  # Choir-Name, Path, Filename,<p>, Last Update
@@ -68,8 +84,11 @@ class CleaningSegmentation:
 
         concatenated.query('_merge=="both"').drop('_merge', axis=1).to_csv(index=False)
 
-        return concatenated.query('_merge=="right_only"').drop(['_merge','<p>'], axis=1)
+        return concatenated.query('_merge=="right_only"').drop(['_merge', '<p>'], axis=1)
 
+    # ----------------------------------------------------------------------------------------------------
+    # Function executes all the needed steps clean, segment and save all the paragraphs of each html
+    # ----------------------------------------------------------------------------------------------------
     def execute_segmentation(self):
         df_update = self.filter_updated_dataframe()
 
