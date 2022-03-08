@@ -1,6 +1,12 @@
 import os
 import re
 import pandas
+from datetime import datetime
+
+
+def get_time():
+    timer = datetime.now()
+    return timer.strftime("%d/%m/%Y %H:%M:%S")
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -26,7 +32,7 @@ class WGet:
         self.url_path = url_path
         self.html_path = html_path
         self.log_path = log_path
-        self.dataframes_path = dataframes_path + "wget_dataframe.csv"
+        self.dataframes_path = dataframes_path
 
     # ----------------------------------------------------------------------------------------------------
     # parameter:
@@ -56,9 +62,11 @@ class WGet:
     # Return a dict, that each contain the information described above
     # ----------------------------------------------------------------------------------------------------
     def get_log_dict(self):
-        result = {"Choirname": [],
+
+        result = {"Choir-Name": [],
                   "Path": [],
-                  "Filename": []}
+                  "Filename": [],
+                  "Last Update": []}
 
         regex = 'Wird in ([^ ]*)(.html[^ ]*)'
 
@@ -69,15 +77,20 @@ class WGet:
         for elem in tmp:
             val_all = (elem[0] + elem[1][:-1]).split('/')
 
-            result["Choirname"].append(val_all[3])
+            result["Choir-Name"].append(val_all[3])
             result["Path"].append("../" + "".join(i + "/" for i in val_all[1:-1]))
             result["Filename"].append(val_all[len(val_all) - 1])
+            result["Last Update"].append(get_time())
 
         return result
 
     # ----------------------------------------------------------------------------------------------------
     # Method creates and saves a dataframe with all the needed information for cleaning and segmentation
     # ----------------------------------------------------------------------------------------------------
-    def create_csv(self):
-        dataframe = pandas.DataFrame(self.get_log_dict(), columns=["Choirname", "Path", "Filename"])
-        dataframe.to_csv(self.dataframes_path)
+    def wget_create_csv(self):
+        new_dataframe = pandas.DataFrame(self.get_log_dict(), columns=["Choir-Name", "Path", "Filename", "Last Update"])
+        existing_dataframe = pandas.read_csv(self.dataframes_path)
+
+        merged_dataframe = pandas.concat([new_dataframe, existing_dataframe])
+        merged_dataframe.drop_duplicates(subset=["Choir-Name", "Path", "Filename"], inplace=True)
+        merged_dataframe.to_csv(self.dataframes_path, index=False)
