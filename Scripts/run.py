@@ -2,7 +2,7 @@ from time import time
 
 from Helper.wget import WGet
 from Helper.cleaning_segmentation import CleaningSegmentation
-from Helper.nlp_filter import NLP_Filter
+from Helper.nlp import NLP_Filter
 
 
 def performance(func):
@@ -34,9 +34,7 @@ cl_seg = CleaningSegmentation(segmentation_dataframe_path, wget_dataframe_path)
 
 cl_seg.execute_segmentation()
 
-
 nlp = NLP_Filter(nlp_dataframe_path, pattern_dataframe_path, segmentation_dataframe_path)
 
 nlp.create_csv()
 
-#TODO implement hashcode in tables to improve performance and reduce complexity
