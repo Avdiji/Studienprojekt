@@ -2,7 +2,7 @@ from time import time
 
 from Helper.wget import WGet
 from Helper.cleaning_segmentation import CleaningSegmentation
-from Helper.nlp import NLP_Filter
+from Helper.nlp_filter import NLP_Filter
 
 
 def performance(func):
