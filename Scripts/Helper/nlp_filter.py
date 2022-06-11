@@ -1,14 +1,51 @@
 import spacy
 import pandas
-from spacy.matcher import Matcher
-import json
+from spacy.language import Language
+import re
+
+def retokenize(reg, ent_type, doc):
+    for match in re.finditer(reg, doc.text):
+        start, end = match.span()
+        span = doc.char_span(start, end, alignment_mode="expand")
+
+        if span is not None:
+            with doc.retokenize() as retokenizer:
+                attr = {"LEMMA": True,
+                        "ENT_TYPE": ent_type}
+                retokenizer.merge(span, attrs=attr)
 
 
-def get_matches_list(matcher, doc):
+@Language.component("markdownLinks_2_spans")
+def rt_doc(doc):
+    reg_time_eibach = r"\d\d.\d\d Uhr bis \d\d.\d\d Uhr"
+    reg_time_maxfeld = r"\d\d.\d\d - \d\d.\d\d Uhr"
+    reg_time_ziegelstein = r"\d\d.\d\d Uhr"
+    reg_time_schniegling = r"\d\d:\d\d Uhr - \d\d:\d\d Uhr"
+    reg_day = r"(m|M)ontag|(d|D)ienstag|(m|M)ittwoch|(d|D)onnerstag|(f|F)reitag|(s|S)amstag|(s|S)onntag"
+
+    retokenize(reg_time_eibach, "TIME", doc)
+    retokenize(reg_time_maxfeld, "TIME", doc)
+    retokenize(reg_time_ziegelstein, "TIME", doc)
+    retokenize(reg_time_schniegling, "TIME", doc)
+    retokenize(reg_day, "DAY", doc)
+
+    return doc
+
+
+def create_filtered_text(doc):
     result = []
-    for match_id, start, end in matcher(doc):
-        result.append(doc[start:end])
-    return result
+    valid_day = False
+    valid_time = False
+
+    for token in doc:
+        if token.ent_type_ == "TIME" or token.ent_type_ == "DAY":
+            if token.ent_type_ == "DAY":
+                valid_day = True
+            if token.ent_type_ == "TIME":
+                valid_time = True
+            result.append(str(token))
+
+    return "".join(token + " " for token in result) if valid_time and valid_day else ""
 
 
 class NLP_Filter:
@@ -19,42 +56,26 @@ class NLP_Filter:
         self.pattern_dataframe_path = pattern_dataframe_path
         self.segmentation_dataframe_path = segmentation_dataframe_path
 
-    def load_all_patterns(self):
-        result = []
-
-        all_patterns = open(self.pattern_dataframe_path, 'r', encoding="UTF-8")
-        for line in all_patterns:
-            result.append(json.loads(line))
-        all_patterns.close()
-
-        return result
-
-    def get_matcher(self):
-        matcher = Matcher(self.nlp.vocab)
-        all_patterns = [pattern for pattern in self.load_all_patterns()]
-        matcher.add("", all_patterns)
-
-        return matcher
-
     def create_csv(self):
+        self.nlp.add_pipe("markdownLinks_2_spans", name="markdownLinks_2_spans", first=True)
         csv_dict = {"Choir-Name": [],
                     "Filtered Text": []}
 
-        matcher = self.get_matcher()
-
         segmentation_df = pandas.read_csv(self.segmentation_dataframe_path)
         segmentation_df = segmentation_df.dropna()
+
         for elem in segmentation_df.iterrows():
             choir_name = elem[1][0]
             text = elem[1][3]
 
-            print(text)
-            print()
             doc = self.nlp(text)
-            matching = get_matches_list(matcher, doc)
-            if len(matching) > 0:
+            filtered = create_filtered_text(doc)
+
+            print(text)
+
+            if len(filtered) > 0:
                 csv_dict["Choir-Name"].append(choir_name)
-                csv_dict["Filtered Text"].append(str(matching))
+                csv_dict["Filtered Text"].append(filtered)
 
         new_dataframe = pandas.DataFrame(csv_dict, columns=["Choir-Name", "Filtered Text"]).drop_duplicates()
         new_dataframe.to_csv(self.nlp_dataframe_path, index=False)
