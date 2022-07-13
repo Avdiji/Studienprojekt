@@ -28,32 +28,32 @@ Mithilfe dieser Library lässt sich Text computerbasiert analysieren. Wir Nutzen
 ```
 python -m spacy download de_core_news_lg
 ```
-Um das volle potential von Spacy auszuschöpfen, benötigen wir eine bereits trainierte, deutschsprachige Pipeline. Diese Wird mit obigem Befehl heruntergeladen.
+Um das volle Potential von Spacy auszuschöpfen, benötigen wir eine bereits trainierte, deutschsprachige Pipeline. Diese Wird mit obigem Befehl heruntergeladen.
 <br><br>
 
 
 ```
 pip install beautifulsoup4
 ```
-Für das Scrapen und Parsen von Website-Daten machen wir uns BeautifulSoup zunutze. Auf diese Weise können wir HTML-files problemlos analysieren und von ungewollten Daten säubern.
+Für das Scrapen und Parsen von Website-Daten machen wir uns BeautifulSoup zunutze. Auf diese Weise können wir HTML-Files problemlos analysieren und von ungewollten Daten säubern.
 <br><br>
 
 
 ```
 pip install pandas
 ```
-Um Daten zu analysieren und zu verarbeiten machen wir Gebrauch von Pandas. Entsprechendes Modul ermöglicht es uns CSV-Files zu parsen und zu erstellen. Außerdem können mit entsprechender Library fehlerhafte bzw. veraltete Datensätze herausgefiltert werden.
+Um Datensätze zu analysieren und zu verarbeiten machen wir Gebrauch von Pandas. Entsprechendes Modul ermöglicht es uns CSV-Files zu parsen und zu erstellen. Außerdem können mit entsprechender Library fehlerhafte bzw. veraltete Datensätze herausgefiltert werden.
 <br><br><br>
 
 
 ### Ausführen
-Vorausgesetzt es wurden alle benötigten Librarys heruntergeladen, können wir uns nun dem ausführen des Repositorys zuwenden.
+Vorausgesetzt es wurden alle benötigten Librarys heruntergeladen, können wir uns nun dem Ausführen des Repositorys zuwenden.
 
 ```
 git clone https://github.com/Avdiji/Studienprojekt.git
 ```
 Obigen Command geben wir ein, um dieses Repository herunterzuladen.<br>
-Nachdem wir das getan haben, können wir es über PyCharm öffnen und zum, unter dem "scripts" - Folder befindlichen, run.py navigieren.<br>
+Nachdem wir das getan haben, können wir es über PyCharm öffnen und zum, unter dem "scripts"-Ordner befindlichen, run.py navigieren.<br>
 Entsprechendes Python-File können wir im Run-Configurator auswählen und ausführen.<br><br>
 
 Alternativ hat man die Möglichkeit zum bereits erwähnten Ordner zu navigieren und den unteren Befehl ausführen:
