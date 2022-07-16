@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nlp_filter_ &mdash; Studienprojekt 30.06.2022 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Studienprojekt
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Code</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Studienprojekt</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Module code</a> &raquo;</li>
+      <li>nlp_filter_</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nlp_filter_</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">spacy</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">from</span> <span class="nn">spacy.language</span> <span class="kn">import</span> <span class="n">Language</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<div class="viewcode-block" id="retokenize"><a class="viewcode-back" href="../nlp_filter_.html#nlp_filter_.retokenize">[docs]</a><span class="k">def</span> <span class="nf">retokenize</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">ent_type</span><span class="p">,</span> <span class="n">doc</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Function retokenizes the given doc object according to the given regex</span>
+
+<span class="sd">        :param reg: Pattern to search for</span>
+<span class="sd">        :param ent_type: (Day,Time)</span>
+<span class="sd">        :param doc: doc object</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">text</span><span class="p">):</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">span</span><span class="p">()</span>
+        <span class="n">span</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">char_span</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">alignment_mode</span><span class="o">=</span><span class="s2">&quot;expand&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">span</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">doc</span><span class="o">.</span><span class="n">retokenize</span><span class="p">()</span> <span class="k">as</span> <span class="n">retokenizer</span><span class="p">:</span>
+                <span class="n">attr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;LEMMA&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">&quot;ENT_TYPE&quot;</span><span class="p">:</span> <span class="n">ent_type</span><span class="p">}</span>
+                <span class="n">retokenizer</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">span</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="n">attr</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="rt_doc"><a class="viewcode-back" href="../nlp_filter_.html#nlp_filter_.rt_doc">[docs]</a><span class="nd">@Language</span><span class="o">.</span><span class="n">component</span><span class="p">(</span><span class="s2">&quot;markdownLinks_2_spans&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">rt_doc</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; the function passes the regex and entity type (where we assign the times of the chorus to)</span>
+<span class="sd">        the function calls the retokenize function multiple times and returns the retokenized doc</span>
+<span class="sd">        returns the doc at the end</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">reg_time_eibach</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\d\d.\d\d Uhr bis \d\d.\d\d Uhr&quot;</span>
+    <span class="n">reg_time_maxfeld</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\d\d.\d\d - \d\d.\d\d Uhr&quot;</span>
+    <span class="n">reg_time_ziegelstein</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\d\d.\d\d Uhr&quot;</span>
+    <span class="n">reg_time_schniegling</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\d\d:\d\d Uhr - \d\d:\d\d Uhr&quot;</span>
+    <span class="n">reg_day</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(m|M)ontag|(d|D)ienstag|(m|M)ittwoch|(d|D)onnerstag|(f|F)reitag|(s|S)amstag|(s|S)onntag&quot;</span>
+
+    <span class="n">retokenize</span><span class="p">(</span><span class="n">reg_time_eibach</span><span class="p">,</span> <span class="s2">&quot;TIME&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
+    <span class="n">retokenize</span><span class="p">(</span><span class="n">reg_time_maxfeld</span><span class="p">,</span> <span class="s2">&quot;TIME&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
+    <span class="n">retokenize</span><span class="p">(</span><span class="n">reg_time_ziegelstein</span><span class="p">,</span> <span class="s2">&quot;TIME&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
+    <span class="n">retokenize</span><span class="p">(</span><span class="n">reg_time_schniegling</span><span class="p">,</span> <span class="s2">&quot;TIME&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
+    <span class="n">retokenize</span><span class="p">(</span><span class="n">reg_day</span><span class="p">,</span> <span class="s2">&quot;DAY&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">doc</span></div>
+
+<div class="viewcode-block" id="create_filtered_text"><a class="viewcode-back" href="../nlp_filter_.html#nlp_filter_.create_filtered_text">[docs]</a><span class="k">def</span> <span class="nf">create_filtered_text</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; The Method checks whether the given doc object contains tokens of the type day and time</span>
+
+<span class="sd">        :return: empty string if valid_day or valid_time are false</span>
+<span class="sd">        :return: string corresponding tokens as a string if true</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">valid_day</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">valid_time</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">ent_type_</span> <span class="o">==</span> <span class="s2">&quot;TIME&quot;</span> <span class="ow">or</span> <span class="n">token</span><span class="o">.</span><span class="n">ent_type_</span> <span class="o">==</span> <span class="s2">&quot;DAY&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">ent_type_</span> <span class="o">==</span> <span class="s2">&quot;DAY&quot;</span><span class="p">:</span>
+                <span class="n">valid_day</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">ent_type_</span> <span class="o">==</span> <span class="s2">&quot;TIME&quot;</span><span class="p">:</span>
+                <span class="n">valid_time</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">token</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">result</span><span class="p">)</span> <span class="k">if</span> <span class="n">valid_time</span> <span class="ow">and</span> <span class="n">valid_day</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="NLP_Filter"><a class="viewcode-back" href="../nlp_filter_.html#nlp_filter_.NLP_Filter">[docs]</a><span class="k">class</span> <span class="nc">NLP_Filter</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39; Loads the german spacy pipeline and sets the paths</span>
+
+<span class="sd">        :param nlp_dataframe_path: path where the csv will be saved</span>
+<span class="sd">        :param pattern_dataframe_path: not needed anymore</span>
+<span class="sd">        :param segmentation_dataframe_path: path to the segmentation dataframe</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nlp_dataframe_path</span><span class="p">,</span> <span class="n">pattern_dataframe_path</span><span class="p">,</span> <span class="n">segmentation_dataframe_path</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;de_core_news_lg&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nlp_dataframe_path</span> <span class="o">=</span> <span class="n">nlp_dataframe_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pattern_dataframe_path</span> <span class="o">=</span> <span class="n">pattern_dataframe_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">segmentation_dataframe_path</span> <span class="o">=</span> <span class="n">segmentation_dataframe_path</span>
+        
+
+<div class="viewcode-block" id="NLP_Filter.create_csv"><a class="viewcode-back" href="../nlp_filter_.html#nlp_filter_.NLP_Filter.create_csv">[docs]</a>    <span class="k">def</span> <span class="nf">create_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; added retokenizer (rt_doc) to the spacy pipeline and filters all relevant dates,</span>
+<span class="sd">            which are stored in a csv file</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span><span class="o">.</span><span class="n">add_pipe</span><span class="p">(</span><span class="s2">&quot;markdownLinks_2_spans&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;markdownLinks_2_spans&quot;</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">csv_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Choir-Name&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                    <span class="s2">&quot;Filtered Text&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+
+        <span class="n">segmentation_df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">segmentation_dataframe_path</span><span class="p">)</span>
+        <span class="n">segmentation_df</span> <span class="o">=</span> <span class="n">segmentation_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">segmentation_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">choir_name</span> <span class="o">=</span> <span class="n">elem</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">elem</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+
+            <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+            <span class="n">filtered</span> <span class="o">=</span> <span class="n">create_filtered_text</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">filtered</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">csv_dict</span><span class="p">[</span><span class="s2">&quot;Choir-Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">choir_name</span><span class="p">)</span>
+                <span class="n">csv_dict</span><span class="p">[</span><span class="s2">&quot;Filtered Text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filtered</span><span class="p">)</span>
+
+        <span class="n">new_dataframe</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">csv_dict</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Choir-Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Filtered Text&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+        <span class="n">new_dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nlp_dataframe_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Andrei.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wget &mdash; Studienprojekt 30.06.2022 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Studienprojekt
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Code</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Studienprojekt</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Module code</a> &raquo;</li>
+      <li>wget</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for wget</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+
+
+<div class="viewcode-block" id="get_time"><a class="viewcode-back" href="../wget.html#wget.get_time">[docs]</a><span class="k">def</span> <span class="nf">get_time</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Function returns current date and time</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">timer</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">timer</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y %H:%M:%S&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="WGet"><a class="viewcode-back" href="../wget.html#wget.WGet">[docs]</a><span class="k">class</span> <span class="nc">WGet</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39; Class Handles everything that evolves around downloading html files</span>
+
+<span class="sd">        :param url_path: path to the textfile, that contains all the urls</span>
+<span class="sd">        :param html_path: path to the directory, where all the html files are supposed to be saved at</span>
+<span class="sd">        :param url_dict: dictionary with the names of the choirs(key) and the corresponding urls(value)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url_path</span><span class="p">,</span> <span class="n">html_path</span><span class="p">,</span> <span class="n">log_path</span><span class="p">,</span> <span class="n">dataframes_path</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">url_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="p">[(</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+             <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">url_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">url_path</span> <span class="o">=</span> <span class="n">url_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">html_path</span> <span class="o">=</span> <span class="n">html_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_path</span> <span class="o">=</span> <span class="n">log_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataframes_path</span> <span class="o">=</span> <span class="n">dataframes_path</span>
+
+
+<div class="viewcode-block" id="WGet.mirror_domain"><a class="viewcode-back" href="../wget.html#wget.WGet.mirror_domain">[docs]</a>    <span class="k">def</span> <span class="nf">mirror_domain</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Function saves several websites as a html</span>
+
+<span class="sd">            :param domain_path: path to the textfile with the website - URLs</span>
+<span class="sd">            :param saving_destination: path to the saving destination of the corresponding html-files</span>
+<span class="sd">            :param log_path: path to the saving destination of the corresponding logfile</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">wget_createLog</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;wget -a </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">log_path</span><span class="si">}</span><span class="s2"> &quot;</span>
+        <span class="n">wget_reject_datatypes</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;--reject JPG,jpg,png,mp3,pdf,MP4,mp4,jpeg,gif,js,css &quot;</span>
+
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_path</span><span class="p">):</span> <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_path</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">url_key</span><span class="p">,</span> <span class="n">url_value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">wget_save_in_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;-P </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">html_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">url_key</span><span class="si">}</span><span class="s2"> &quot;</span>
+            <span class="n">wget_mirror</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;-N -c --mirror </span><span class="si">{</span><span class="n">url_value</span><span class="si">}</span><span class="s2">&quot;</span>
+
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">wget_createLog</span> <span class="o">+</span> <span class="n">wget_save_in_path</span> <span class="o">+</span> <span class="n">wget_reject_datatypes</span> <span class="o">+</span> <span class="n">wget_mirror</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WGet.get_log_dict"><a class="viewcode-back" href="../wget.html#wget.WGet.get_log_dict">[docs]</a>    <span class="k">def</span> <span class="nf">get_log_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    
+        <span class="sd">&#39;&#39;&#39; Method acts as a parser for the log_file. It saves the corresponding</span>
+<span class="sd">            choir-name, path and name of all html files, found in the logfile (as a dict)</span>
+
+<span class="sd">            :Return: dict that each contain the information described above</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Choir-Name&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                  <span class="s2">&quot;Path&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                  <span class="s2">&quot;Filename&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                  <span class="s2">&quot;Last Update&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+
+        <span class="n">regex</span> <span class="o">=</span> <span class="s1">&#39;Wird in ([^ ]*)(.html[^ ]*)&#39;</span>
+
+        <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()])</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">lines</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">tmp</span><span class="p">:</span>
+            <span class="n">val_all</span> <span class="o">=</span> <span class="p">(</span><span class="n">elem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">elem</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Choir-Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val_all</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../&quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">val_all</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Filename&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val_all</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">val_all</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;Last Update&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_time</span><span class="p">())</span>
+
+        <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="WGet.wget_create_csv"><a class="viewcode-back" href="../wget.html#wget.WGet.wget_create_csv">[docs]</a>    <span class="k">def</span> <span class="nf">wget_create_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    
+        <span class="sd">&#39;&#39;&#39; Method creates and saves a dataframe with all the needed information for cleaning and segmentation</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="n">new_dataframe</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_log_dict</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Choir-Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Path&quot;</span><span class="p">,</span> <span class="s2">&quot;Filename&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Update&quot;</span><span class="p">])</span>
+        <span class="n">existing_dataframe</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataframes_path</span><span class="p">)</span>
+
+        <span class="n">merged_dataframe</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">new_dataframe</span><span class="p">,</span> <span class="n">existing_dataframe</span><span class="p">])</span>
+        <span class="n">merged_dataframe</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Choir-Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Path&quot;</span><span class="p">,</span> <span class="s2">&quot;Filename&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">merged_dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataframes_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Andrei.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
