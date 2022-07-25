@@ -3,6 +3,7 @@ import pandas
 from spacy.language import Language
 import re
 
+
 def retokenize(reg, ent_type, doc):
     for match in re.finditer(reg, doc.text):
         start, end = match.span()
@@ -59,7 +60,8 @@ class NLP_Filter:
     def create_csv(self):
         self.nlp.add_pipe("markdownLinks_2_spans", name="markdownLinks_2_spans", first=True)
         csv_dict = {"Choir-Name": [],
-                    "Filtered Text": []}
+                    "Filtered Text": [],
+                    "Corresponding Paragraph": []}
 
         segmentation_df = pandas.read_csv(self.segmentation_dataframe_path)
         segmentation_df = segmentation_df.dropna()
@@ -76,6 +78,8 @@ class NLP_Filter:
             if len(filtered) > 0:
                 csv_dict["Choir-Name"].append(choir_name)
                 csv_dict["Filtered Text"].append(filtered)
+                csv_dict["Corresponding Paragraph"].append(text)
 
-        new_dataframe = pandas.DataFrame(csv_dict, columns=["Choir-Name", "Filtered Text"]).drop_duplicates()
+        new_dataframe = pandas.DataFrame(csv_dict, columns=["Choir-Name", "Filtered Text",
+                                                            "Corresponding Paragraph"]).drop_duplicates()
         new_dataframe.to_csv(self.nlp_dataframe_path, index=False)
