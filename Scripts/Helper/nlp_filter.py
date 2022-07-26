@@ -52,7 +52,7 @@ def create_filtered_text(doc):
 class NLP_Filter:
 
     def __init__(self, nlp_dataframe_path, pattern_dataframe_path, segmentation_dataframe_path):
-        self.nlp = spacy.load("de_core_news_lg")
+        self.nlp = spacy.load("de_core_news_sm")
         self.nlp_dataframe_path = nlp_dataframe_path
         self.pattern_dataframe_path = pattern_dataframe_path
         self.segmentation_dataframe_path = segmentation_dataframe_path
